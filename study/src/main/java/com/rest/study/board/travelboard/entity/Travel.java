@@ -1,6 +1,6 @@
 package com.rest.study.board.travelboard.entity;
 
-import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.data.annotation.CreatedDate;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.Column;
@@ -27,13 +27,13 @@ public class Travel {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_MENU_ID")
     private Long travelId;
-    @Column(nullable = false) // Not Null
+    @Column(length = 50, nullable = false) // Not Null
     private String travelMemberId;
-    @Column(nullable = false) // Not Null
+    @Column(length = 100, nullable = false) // Not Null
     private String travelTitle;
     @Column(nullable = false) // Not Null
     private String travelContent;
-    @CreationTimestamp
+    @CreatedDate
     private LocalDateTime travelCreatedAt;
 
 }
