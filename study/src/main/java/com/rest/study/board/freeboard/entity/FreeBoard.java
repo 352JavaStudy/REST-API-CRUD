@@ -20,11 +20,11 @@ public class FreeBoard {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_FREE_ID")
     private Long freeId;
-    @Column(nullable = false)
+    @Column(nullable = false, length = 100)
     private String freeTitle;
     @Column(nullable = false)
     private String freeContent;
-    @Column(nullable = false)
+    @Column(nullable = false, length = 10)
     private String freeMemberId;
     @CreationTimestamp
     private Date freeCreatedAt;
