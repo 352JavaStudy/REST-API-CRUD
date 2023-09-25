@@ -1,12 +1,16 @@
 package com.rest.study.board.foodboard.controller;
 
 import com.rest.study.board.foodboard.service.FoodBoardService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
+@CrossOrigin(origins ="http://localhost:8080")
 @RestController
 @RequestMapping("/foodBoards")
 // @Controller 모든 핸들러에 @ResponseBody 어노테이션 적용해줌
@@ -18,8 +22,9 @@ public class FoodBoardApiController {
 
     @GetMapping
     public ResponseEntity<?> findAll() {
+        System.out.println(foodBoardService.findAll());
         // HttpEntity 클래스를 상속받아 구현한 ResponseEntity 응답 데이터(헤더/바디)를 포함한 클래스
-        return ResponseEntity.ok(foodBoardService.findAll());
+        return null;
     }
 
 }

@@ -17,8 +17,8 @@ public class FoodBoard {
     @GeneratedValue(strategy =  GenerationType.SEQUENCE, generator = "SEQ_FOOD_BOARD_ID")
     private Long foodId; // null을 확인하기 위해서 참조형으로
 
-    @Column(nullable = false)
     @ManyToOne
+    @JoinColumn(name = "food_member_id")
     private Member member;
 
     @Column(nullable = false, length = 500)
