@@ -11,19 +11,15 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class FreeBoardDto {
 
-    private Long freeId;
     private String freeTitle;
     private String freeContent;
     private String freeMemberId;
-    private LocalDateTime freeCreatedAt;
 
-    public FreeBoardDto toFreeBoard() {
-        return new FreeBoardDto(
-                this.getFreeId(),
-                this.getFreeTitle(),
-                this.getFreeContent(),
-                this.getFreeMemberId(),
-                this.getFreeCreatedAt());
+    public FreeBoard toFreeBoardDto(FreeBoard freeBoard) {
+                freeBoard.setFreeTitle(freeTitle);
+                freeBoard.setFreeContent(freeContent);
+                freeBoard.setFreeMemberId(freeMemberId);
+                return freeBoard;
     }
 
     public void update(FreeBoardDto freeBoardDto) {

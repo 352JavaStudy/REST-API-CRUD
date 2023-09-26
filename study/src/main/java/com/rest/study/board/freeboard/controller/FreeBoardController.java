@@ -40,10 +40,8 @@ public class FreeBoardController {
     @PutMapping("/{id}")
     public ResponseEntity<?> putBoard(@PathVariable("id") Long id, @RequestBody FreeBoardDto freeBoardDto) {
         FreeBoard freeBoard = freeBoardService.findById(id);
-        freeBoardDto.update(FreeBoardDto.tofreeBoardDto(freeBoard));
-        freeBoardDto.tofreeBoardDto(freeBoard);
+        freeBoardDto.toFreeBoardDto(freeBoard);
         freeBoardService.save(freeBoard);
         return ResponseEntity.ok(freeBoardService.findById(id));
     }
-
 }
