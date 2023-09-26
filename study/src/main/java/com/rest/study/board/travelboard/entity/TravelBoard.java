@@ -23,7 +23,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Travel {
+public class TravelBoard {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_MENU_ID")
     private Long travelId;

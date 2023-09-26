@@ -21,6 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.net.URI;
 
+
 @CrossOrigin(origins = "http://localhost:8080")
 @RestController // @Controller인데 모든핸들러에 @ResponseBody어노테이션을 적용해준다.
 @RequestMapping("/travel")
@@ -30,26 +31,9 @@ public class TravelController {
     @Autowired
     private TravelService travelService;
 
-    @GetMapping
-    public ResponseEntity<?> findAll() {
-        return ResponseEntity.ok(travelService.findAll());
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<?> findById(@PathVariable Long id) {
-        Travel travel = travelService.findById(id);
-        if(travel == null)
-            return ResponseEntity.notFound().build();
-        return ResponseEntity.ok(travel);
-    }
 
 
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteMenu(@PathVariable Long id) {
-        travelService.deleteById(id);
-        return ResponseEntity.noContent().build(); // 204
-    }
 
 
 
