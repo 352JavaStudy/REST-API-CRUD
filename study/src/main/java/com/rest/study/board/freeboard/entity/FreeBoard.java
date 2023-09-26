@@ -33,4 +33,5 @@ public class FreeBoard {
 
     @CreationTimestamp
     private LocalDateTime freeCreatedAt;
+
 }
