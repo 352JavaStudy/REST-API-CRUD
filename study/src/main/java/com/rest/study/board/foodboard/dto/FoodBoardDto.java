@@ -28,4 +28,10 @@ public class FoodBoardDto {
                 .foodCreatedAt(Timestamp.valueOf(LocalDateTime.now()))
                 .build();
     }
+
+    public FoodBoard toFoodBoard(FoodBoard board) {
+        board.setFoodTitle(foodTitle);
+        board.setFoodContent(foodContent);
+        return board;
+    }
 }

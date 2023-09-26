@@ -46,4 +46,14 @@ public class FoodBoardApiController {
         return ResponseEntity.ok(foodBoardService.save(foodBoard));
     }
 
+    @PatchMapping("/{id}")
+    public ResponseEntity<FoodBoard> updateBoard(@PathVariable Long id, @Valid @RequestBody FoodBoardDto foodBoardDto) {
+        FoodBoard board = foodBoardService.findById(id);
+        if(board == null)
+            return ResponseEntity.notFound().build();
+        foodBoardDto.toFoodBoard(board);
+        foodBoardService.save(board);
+        return ResponseEntity.ok(board);
+    }
+
 }
