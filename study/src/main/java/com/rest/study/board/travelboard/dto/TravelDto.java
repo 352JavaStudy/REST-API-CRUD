@@ -22,7 +22,7 @@ public class TravelDto {
     @CreatedDate
     private LocalDateTime travelCreatedAt;
 
-    public Travel toTravel(Travel travel) {
+    public TravelBoard toTravel(TravelBoard travel) {
         travel.setTravelMemberId(travelMemberId);
         travel.setTravelTitle(travelTitle);
         travel.setTravelContent(travelContent);
@@ -30,8 +30,8 @@ public class TravelDto {
         return travel;
     }
 
-    public Travel toTravel(){
-        return Travel.builder()
+    public TravelBoard toTravel(){
+        return TravelBoard.builder()
                 .travelMemberId(travelMemberId)
                 .travelTitle(travelTitle)
                 .travelContent(travelContent)
