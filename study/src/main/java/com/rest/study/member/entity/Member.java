@@ -1,4 +1,4 @@
-package com.rest.study.member;
+package com.rest.study.member.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
@@ -17,7 +17,7 @@ import java.sql.Date;
 @Entity
 public class Member {
     @Id
-    private String member_Id;
+    private String memberId;
 
     @Column(nullable = false)
     private String name;
