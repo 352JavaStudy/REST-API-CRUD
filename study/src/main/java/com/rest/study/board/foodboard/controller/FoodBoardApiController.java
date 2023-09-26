@@ -25,14 +25,14 @@ public class FoodBoardApiController {
     private FoodBoardService foodBoardService;
 
     @GetMapping
-    public ResponseEntity<List<FoodBoard>> findAll() {
+    public ResponseEntity<List<FoodBoard>> getBoards() {
         // HttpEntity 클래스를 상속받아 구현한 ResponseEntity 응답 데이터(헤더/바디)를 포함한 클래스
         List<FoodBoard> foodBoards = foodBoardService.findAll();
         return ResponseEntity.ok(foodBoards);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<FoodBoard> findById(@PathVariable Long id) {
+    public ResponseEntity<FoodBoard> getBoard(@PathVariable Long id) {
         FoodBoard foodBoard = foodBoardService.findById(id);
         if(foodBoard == null)
                 return ResponseEntity.notFound().build();
@@ -41,7 +41,7 @@ public class FoodBoardApiController {
 
 
     @PostMapping
-    public ResponseEntity<FoodBoard> createBoard(@Valid @RequestBody FoodBoardDto foodBoardDto, BindingResult bindingResult) {
+    public ResponseEntity<FoodBoard> writeBoard(@Valid @RequestBody FoodBoardDto foodBoardDto, BindingResult bindingResult) {
         FoodBoard foodBoard = foodBoardDto.toFoodBoard();
         return ResponseEntity.ok(foodBoardService.save(foodBoard));
     }
