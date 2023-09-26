@@ -19,4 +19,15 @@ public class FreeBoardServiceImpl implements FreeBoardService{
     public List<FreeBoard> findAll() {
         return freeBoardRepository.findAll();
     }
+
+    @Override
+    public FreeBoard findById(Long id) {
+        return freeBoardRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public FreeBoard save(FreeBoard freeBoard) {
+        return freeBoardRepository.save(freeBoard);
+    }
+
 }

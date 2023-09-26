@@ -4,12 +4,7 @@ import com.rest.study.board.freeboard.entity.FreeBoard;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
@@ -22,13 +17,19 @@ public class FreeBoardDto {
     private String freeMemberId;
     private LocalDateTime freeCreatedAt;
 
-    public static FreeBoardDto freeBoardDto(FreeBoard freeBoard) {
+    public FreeBoardDto toFreeBoard() {
         return new FreeBoardDto(
-                freeBoard.getFreeId(),
-                freeBoard.getFreeTitle(),
-                freeBoard.getFreeContent(),
-                freeBoard.getFreeMemberId(),
-                freeBoard.getFreeCreatedAt());
+                this.getFreeId(),
+                this.getFreeTitle(),
+                this.getFreeContent(),
+                this.getFreeMemberId(),
+                this.getFreeCreatedAt());
+    }
+
+    public void update(FreeBoardDto freeBoardDto) {
+        this.freeTitle = freeBoardDto.getFreeTitle();
+        this.freeContent = freeBoardDto.getFreeContent();
+        this.freeMemberId = freeBoardDto.getFreeMemberId();
     }
 }
 
