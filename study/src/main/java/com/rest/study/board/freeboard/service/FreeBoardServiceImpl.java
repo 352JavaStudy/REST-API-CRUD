@@ -30,4 +30,9 @@ public class FreeBoardServiceImpl implements FreeBoardService{
         return freeBoardRepository.save(freeBoard);
     }
 
+    @Override
+    public void deleteById(Long id) {
+        freeBoardRepository.deleteById(id);
+    }
+
 }

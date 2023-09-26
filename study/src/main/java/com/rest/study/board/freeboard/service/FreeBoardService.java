@@ -15,4 +15,5 @@ public interface FreeBoardService {
 
     FreeBoard save(FreeBoard freeBoard);
 
+    void deleteById(Long id);
 }

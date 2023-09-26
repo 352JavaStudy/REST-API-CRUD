@@ -44,4 +44,10 @@ public class FreeBoardController {
         freeBoardService.save(freeBoard);
         return ResponseEntity.ok(freeBoardService.findById(id));
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteBoard(@PathVariable("id") Long id){
+        freeBoardService.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
 }
