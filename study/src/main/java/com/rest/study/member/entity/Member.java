@@ -34,4 +34,5 @@ public class Member {
 
     @CreationTimestamp
     private Date enrollDate;
+
 }
