@@ -17,7 +17,7 @@ public class TravelBoardController {
     @Autowired
     private TravelBoardService travelBoardService;
 
-    
+    @GetMapping("/{travelId}")
 
 
 }
