@@ -14,7 +14,6 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @Entity
 public class Member {
-
     @Id
     private String memberId;
 }

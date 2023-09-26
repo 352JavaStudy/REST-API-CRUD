@@ -19,4 +19,14 @@ public class FoodBoardServiceImpl implements FoodBoardService{
     public List<FoodBoard> findAll() {
         return foodBoardRepository.findAllByOrderByFoodIdDesc();
     }
+
+    @Override
+    public FoodBoard findById(Long id) {
+        return foodBoardRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public FoodBoard save(FoodBoard foodBoard) {
+        return foodBoardRepository.save(foodBoard);
+    }
 }

@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface FoodBoardRepository extends JpaRepository<FoodBoard, Long> {
     List<FoodBoard> findAllByOrderByFoodIdDesc();
+
 }

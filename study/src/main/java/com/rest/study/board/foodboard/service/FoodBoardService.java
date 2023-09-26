@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface FoodBoardService {
     List<FoodBoard> findAll();
+    FoodBoard findById(Long id);
+    FoodBoard save(FoodBoard foodBoard);
 }
