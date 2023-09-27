@@ -38,8 +38,7 @@ public class TravelBoardController {
     @PostMapping
     public ResponseEntity<?> createTravelBoard(@Valid @RequestBody TravelBoardDto travelBoardDto) {
         TravelBoard travelBoard = travelBoardDto.toTravel();
-        travelBoardService.save(travelBoard);
-        return ResponseEntity.created(URI.create("/travelboards" + travelBoard.getTravelId())).build();
+        return ResponseEntity.ok(travelBoardService.save(travelBoard));
     }
 
     @PatchMapping("/{id}")
@@ -50,7 +49,6 @@ public class TravelBoardController {
             return ResponseEntity.notFound().build();
         // 수정
         travelBoardDto.toTravel(travelBoard);
-        travelBoard.setTravelId(id);
         travelBoardService.save(travelBoard);
         return ResponseEntity.ok(travelBoardService.findById(id));
 
