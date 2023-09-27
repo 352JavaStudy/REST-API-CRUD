@@ -70,3 +70,6 @@ create table image_attachment_mapping (
 
 
 drop table travel_board;
+
+
+select * from travel_board;

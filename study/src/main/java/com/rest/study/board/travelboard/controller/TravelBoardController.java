@@ -51,7 +51,6 @@ public class TravelBoardController {
         travelBoardDto.toTravel(travelBoard);
         travelBoardService.save(travelBoard);
         return ResponseEntity.ok(travelBoardService.findById(id));
-
     }
 
     @DeleteMapping("/{id}")
@@ -59,6 +58,5 @@ public class TravelBoardController {
         travelBoardService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
-
 
 }
