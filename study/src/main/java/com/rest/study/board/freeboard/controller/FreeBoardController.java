@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @CrossOrigin(origins = "http://localhost:8080")
 @RequestMapping("/freeboards")
 @RestController
@@ -32,13 +34,13 @@ public class FreeBoardController {
     }
 
     @PostMapping
-    public ResponseEntity<?> postBoard(@RequestBody FreeBoard freeBoard) {
-        FreeBoard saveBoard = freeBoardService.save(freeBoard);
-        return new ResponseEntity(saveBoard, HttpStatus.CREATED);
+    public ResponseEntity<?> postBoard(@Valid @RequestBody FreeBoardDto freeBoardDto) {
+        FreeBoard freeBoard = freeBoardDto.toFreeBoardDto();
+        return ResponseEntity.ok(freeBoardService.save(freeBoard));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> putBoard(@PathVariable("id") Long id, @RequestBody FreeBoardDto freeBoardDto) {
+    public ResponseEntity<?> putBoard(@PathVariable("id") Long id, @Valid @RequestBody FreeBoardDto freeBoardDto) {
         FreeBoard freeBoard = freeBoardService.findById(id);
         freeBoardDto.toFreeBoardDto(freeBoard);
         freeBoardService.save(freeBoard);
