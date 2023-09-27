@@ -29,4 +29,9 @@ public class FoodBoardServiceImpl implements FoodBoardService{
     public FoodBoard save(FoodBoard foodBoard) {
         return foodBoardRepository.save(foodBoard);
     }
+
+    @Override
+    public void deleteById(Long id) {
+        foodBoardRepository.deleteById(id);
+    }
 }

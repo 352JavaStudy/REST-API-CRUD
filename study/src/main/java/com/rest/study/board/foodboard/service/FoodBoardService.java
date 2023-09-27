@@ -8,4 +8,5 @@ public interface FoodBoardService {
     List<FoodBoard> findAll();
     FoodBoard findById(Long id);
     FoodBoard save(FoodBoard foodBoard);
+    void deleteById(Long id);
 }

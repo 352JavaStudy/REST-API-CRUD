@@ -56,4 +56,10 @@ public class FoodBoardApiController {
         return ResponseEntity.ok(board);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<FoodBoard> deleteBoard(@PathVariable Long id) {
+        foodBoardService.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }
