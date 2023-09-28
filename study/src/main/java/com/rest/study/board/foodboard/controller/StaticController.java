@@ -1,12 +1,18 @@
 package com.rest.study.board.foodboard.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class StaticController {
+
+    @GetMapping("/")
+    public String index() {
+        return "forward:/index.html";
+    }
 
     @RequestMapping("/foodboards")
     public String foodBoards() { return "forward:/foodBoard_list.html"; }
@@ -42,5 +48,7 @@ public class StaticController {
     @RequestMapping(value = "/travelboards/update/{id}", method = RequestMethod.GET)
     public String travelBoardUpdate() {
         return "forward:/travelboard/travelBoard_update.html";
+    @RequestMapping(value = "/freeboards/updateBoard/{id}", method = RequestMethod.GET)
+    public String updateBoard() { return "forward:/freeboard/freeBoard_update.html";
     }
 }

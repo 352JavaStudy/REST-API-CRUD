@@ -6,20 +6,32 @@
     <title>게시판 리스트</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
+<style>
+    .container {
+        width: 1200px;
+    }
+    a {
+        color: #000;
+        text-decoration: none;
+    }
+    .table td {
+        border-bottom: 1px solid #dee2e6;
+</style>
 <body>
 <div class="container my-3">
-    <button class="btn btn-primary" id="writeButton">글쓰기</button>
+    <a class="navbar-brand" href="/" style="margin-bottom: 50px;">맛있는여행</a>
     <table class="table">
-        <thead class="table-dark">
-            <tr>
-                <th>번호</th>
-                <th>제목</th>
-                <th>작성자</th>
-                <th>작성일시</th>
-            </tr>
+        <thead style="background-color: white;">
+        <tr>
+            <th style="text-align: center; border-left: none;">번호</th>
+            <th style="text-align: center;">제목</th>
+            <th style="text-align: center;">작성자</th>
+            <th style="text-align: center; border-right: none;">작성일시</th>
+        </tr>
         </thead>
         <tbody id="boardList"></tbody>
-    </div>
+    </table>
+        <button class="btn btn-light" id="writeButton" style="border: 1px solid #dee2e6;">글쓰기</button>
 </div>
 <script>
 fetch('http://localhost:8080/api/freeboards')
@@ -36,7 +48,7 @@ fetch('http://localhost:8080/api/freeboards')
             boardList.appendChild(tr);
         });
     })
-    .catch(error => console.error('Error fetching boards:', error));
+    .catch(error => console.error('Error:', error));
 
 document.getElementById("writeButton").addEventListener("click", function() {
     location.href='freeboards/writeBoard';
