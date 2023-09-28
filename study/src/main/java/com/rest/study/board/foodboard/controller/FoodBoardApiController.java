@@ -14,10 +14,10 @@ import javax.validation.Valid;
 import java.util.List;
 
 
-@CrossOrigin(origins ="http://localhost:10000")
+@CrossOrigin(origins ="http://localhost")
 @Slf4j
 @RestController
-@RequestMapping("/foodBoards")
+@RequestMapping("/api/foodboards")
 // @Controller 모든 핸들러에 @ResponseBody 어노테이션 적용해줌
 // @ResponseBody 핸들러에 반환된 자바 객체를 Response Body에 써줌
 public class FoodBoardApiController {
