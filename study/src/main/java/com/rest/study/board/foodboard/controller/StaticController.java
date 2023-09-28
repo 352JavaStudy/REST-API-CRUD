@@ -13,4 +13,9 @@ public class StaticController {
     public String freeBoards() {
         return "forward:/freeBoard_list.html";
     }
+
+    @RequestMapping("/travelboards")
+    public String travelBoards() {
+        return "forward:/travelboards_list.html";
+    }
 }
