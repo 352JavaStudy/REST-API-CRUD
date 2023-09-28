@@ -1,21 +1,28 @@
 package com.rest.study.board.foodboard.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class StaticController {
+
+    @RequestMapping(value="/foodboards", method= RequestMethod.GET)
+    public String getFoodBoards() { return "forward:/foodboard/foodBoard_list.html"; }
+
+    @RequestMapping(value="/foodboards/{id}", method= RequestMethod.GET)
+    public String getFoodBoard() {return "forward:/foodboard/foodBoard_detail.html";}
+
+    @RequestMapping(value="/foodboards/writeBoard", method= RequestMethod.GET)
+    public String writeFoodBoard() {return "forward:/foodboard/foodBoard_write.html";}
+
+    @RequestMapping(value="foodboards/edit/{id}", method= RequestMethod.GET)
+    public String editFoodBoard() {return "forward:/foodboard/foodBoard_edit.html";}
 
     @GetMapping("/")
     public String index() {
         return "forward:/index.html";
     }
 
-    @RequestMapping("/foodboards")
-    public String foodBoards() { return "forward:/foodBoard_list.html"; }
 
     @RequestMapping(value ="/freeboards", method = RequestMethod.GET)
     public String freeBoards() { return "forward:/freeboard/freeBoard_list.html";
