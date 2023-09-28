@@ -9,7 +9,7 @@ import java.util.List;
 
 
 public interface FreeBoardService {
-    List<FreeBoard> findAll();
+    List<FreeBoard> findAllByOrderByFreeIdDesc();
 
     FreeBoard findById(Long id);
 

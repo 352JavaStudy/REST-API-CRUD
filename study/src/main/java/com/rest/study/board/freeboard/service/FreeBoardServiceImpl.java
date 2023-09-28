@@ -16,8 +16,8 @@ public class FreeBoardServiceImpl implements FreeBoardService{
     private FreeBoardRepository freeBoardRepository;
 
     @Override
-    public List<FreeBoard> findAll() {
-        return freeBoardRepository.findAll();
+    public List<FreeBoard> findAllByOrderByFreeIdDesc() {
+        return freeBoardRepository.findAllByOrderByFreeIdDesc();
     }
 
     @Override
