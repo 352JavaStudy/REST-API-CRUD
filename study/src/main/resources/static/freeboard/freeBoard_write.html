@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>글 작성</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+  <h1>글 작성</h1>
+  <form id="createBoardForm">
+    <div class="mb-3">
+      <label for="freeTitle" class="form-label">제목:</label>
+      <input type="text" class="form-control" id="freeTitle" name="freeTitle" required>
+    </div>
+    <div class="mb-3">
+      <label for="freeContent" class="form-label">내용:</label>
+      <textarea class="form-control" id="freeContent" name="freeContent" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">작성하기</button>
+  </form>
+</div>
+<script>
+  document.getElementById('createBoardForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const title = document.getElementById('freeTitle').value;
+    const content = document.getElementById('freeContent').value;
+    fetch('http://localhost:8080/api/freeboards/write', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        freeTitle: title,
+        freeContent: content,
+        freeMemberId: 'member1'
+      })
+    })
+            .then(response => response.json())
+            .then(data => {
+              console.log('Success:', data);
+              window.location.href = `/freeboards`;
+            })
+            .catch((error) => {
+              console.error('Error:', error);
+            });
+  });
+</script>
+</body>
+</html>
