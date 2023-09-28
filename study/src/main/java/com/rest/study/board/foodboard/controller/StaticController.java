@@ -48,7 +48,5 @@ public class StaticController {
     @RequestMapping(value = "/travelboards/update/{id}", method = RequestMethod.GET)
     public String travelBoardUpdate() {
         return "forward:/travelboard/travelBoard_update.html";
-    @RequestMapping(value = "/freeboards/updateBoard/{id}", method = RequestMethod.GET)
-    public String updateBoard() { return "forward:/freeboard/freeBoard_update.html";
     }
 }
