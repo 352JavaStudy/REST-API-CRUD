@@ -8,6 +8,7 @@
 </head>
 <body>
 <div class="container my-3">
+    <button class="btn btn-primary" id="writeButton" onclick="location.href='foodboards/writeBoard'">글쓰기</button>
     <table class="table">
         <thead class="table-dark">
         <tr>
@@ -18,7 +19,7 @@
         </tr>
         </thead>
         <tbody id="boardList"></tbody>
-</div>
+    </table>
 </div>
 <script>
     fetch('http://localhost:8080/api/foodboards')
@@ -27,7 +28,7 @@
             const boardList = document.getElementById('boardList');
             boards.forEach(board => {
                 const tr = document.createElement('tr');
-                tr.innerHTML = `<td>${board.foodId}</td><td>${board.foodTitle}</td><td>${board.foodMemberId}</td><td>${board.foodCreatedAt}</td>`;
+                tr.innerHTML = `<td>${board.foodId}</td><td><a href="foodboards/${board.foodId}">${board.foodTitle}</a></td><td>${board.foodMemberId}</td><td>${board.foodCreatedAt}</td>`;
                 boardList.appendChild(tr);
             });
         })

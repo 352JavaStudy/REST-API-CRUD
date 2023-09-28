@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시글 작성 페이지</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<h1>게시글 작성</h1>
+<form>
+    <label for="foodTitle">제목:</label><br>
+    <input type="text" id="foodTitle" required><br><br>
+
+    <label for="foodContent">내용:</label><br>
+    <textarea id="foodContent" rows="4" cols="50" required></textarea><br><br>
+
+    <input type="button" value="게시글 작성" onclick="submitPost()">
+</form>
+
+<script>
+    function submitPost() {
+        var formData = {
+            foodTitle: document.getElementById("foodTitle").value,
+            foodContent: document.getElementById("foodContent").value,
+            foodMemberId: "사용자 아이디"
+        };
+
+        $.ajax({
+            type: "POST",
+            url: "/api/foodboards",
+            data: JSON.stringify(formData),
+            contentType: "application/json;charset=UTF-8",
+            success: function (response) {
+                window.location.href = "/foodboards";
+            }
+        });
+    }
+</script>
+</body>
+</html>

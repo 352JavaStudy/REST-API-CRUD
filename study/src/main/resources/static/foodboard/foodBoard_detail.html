@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>게시글 상세 정보</title>
+</head>
+<body>
+<h1>게시글 상세 정보</h1>
+<div class="post-details">
+  <h2 id="post-title"></h2>
+  <p><strong>작성자:</strong> <span id="post-author"></span></p>
+  <p><strong>작성일:</strong> <span id="post-created-at"></span></p>
+  <p><strong>내용:</strong></p>
+  <p id="post-content"></p>
+</div>
+<a href="index.html">게시글 목록으로 돌아가기</a>
+</body>
+<script>
+  const url = new URL(window.location.href);
+  const id = url.pathname.split('/').pop();
+
+  fetch(`http://localhost:8080/api/foodboards/${id}`)
+      .then(response => response.json())
+      .then(board => {
+        document.querySelector("#post-title").innerHTML = `${board.foodTitle}`;
+        document.querySelector("#post-author").innerHTML = `${board.foodMemberId}`;
+        document.querySelector("#post-created-at").innerHTML = `${board.foodCreatedAt}`;
+        document.querySelector("#post-content").innerHTML = `${board.foodContent}`;
+      });
+</script>
+</html>
