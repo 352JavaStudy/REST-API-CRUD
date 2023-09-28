@@ -15,6 +15,9 @@ public class StaticController {
     @RequestMapping(value="/foodboards/writeBoard", method= RequestMethod.GET)
     public String writeFoodBoard() {return "forward:/foodboard/foodBoard_write.html";}
 
+    @RequestMapping(value="foodboards/edit/{id}", method= RequestMethod.GET)
+    public String editFoodBoard() {return "forward:/foodboard/foodBoard_edit.html";}
+
 
     @RequestMapping("/freeboards")
     public String freeBoards() {

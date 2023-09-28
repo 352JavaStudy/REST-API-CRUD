@@ -1,31 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>게시글 상세 정보</title>
+    <meta charset="UTF-8">
+    <title>게시글 상세 정보</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <h1>게시글 상세 정보</h1>
 <div class="post-details">
-  <h2 id="post-title"></h2>
-  <p><strong>작성자:</strong> <span id="post-author"></span></p>
-  <p><strong>작성일:</strong> <span id="post-created-at"></span></p>
-  <p><strong>내용:</strong></p>
-  <p id="post-content"></p>
+    <h2 id="post-title"></h2>
+    <p><strong>작성자:</strong> <span id="post-author"></span></p>
+    <p><strong>작성일:</strong> <span id="post-created-at"></span></p>
+    <p><strong>내용:</strong></p>
+    <p id="post-content"></p>
 </div>
-<a href="index.html">게시글 목록으로 돌아가기</a>
+<a href="/foodboards">게시글 목록으로 돌아가기</a>
+<button class="btn btn-primary" onclick="editPost()">수정하기</button>
+<button class="btn btn-primary" onclick="deletePost()">삭제하기</button>
 </body>
 <script>
-  const url = new URL(window.location.href);
-  const id = url.pathname.split('/').pop();
+    const url = new URL(window.location.href);
+    const id = url.pathname.split('/').pop();
 
-  fetch(`http://localhost:8080/api/foodboards/${id}`)
-      .then(response => response.json())
-      .then(board => {
-        document.querySelector("#post-title").innerHTML = `${board.foodTitle}`;
-        document.querySelector("#post-author").innerHTML = `${board.foodMemberId}`;
-        document.querySelector("#post-created-at").innerHTML = `${board.foodCreatedAt}`;
-        document.querySelector("#post-content").innerHTML = `${board.foodContent}`;
-      });
+    fetch(`http://localhost:8080/api/foodboards/${id}`)
+        .then(response => response.json())
+        .then(board => {
+            document.querySelector("#post-title").innerHTML = `${board.foodTitle}`;
+            document.querySelector("#post-author").innerHTML = `${board.foodMemberId}`;
+            document.querySelector("#post-created-at").innerHTML = `${board.foodCreatedAt}`;
+            document.querySelector("#post-content").innerHTML = `${board.foodContent}`;
+        });
+
+    const editPost = () => {
+        window.location.href = `/foodboards/edit/${id}`;
+    };
+
+    const deletePost = () => {
+        $.ajax({
+            type: "DELETE",
+            url: `/api/foodboards/${id}`,
+            data: `${id}`,
+            contentType: "application/json;charset=UTF-8",
+            success: function (response) {
+                window.location.href = `/foodboards`;
+            }
+        });
+    }
 </script>
 </html>

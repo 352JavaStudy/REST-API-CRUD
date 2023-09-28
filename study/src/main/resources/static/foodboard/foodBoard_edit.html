@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<h1>게시글 수정하기</h1>
+<form>
+    <label for="foodId">글번호:</label><br>
+    <input type="text" id="foodId" readonly><br><br>
+
+    <label for="foodMemberId">아이디:</label><br>
+    <input type="text" id="foodMemberId" readonly><br><br>
+
+    <label for="foodTitle">제목:</label><br>
+    <input type="text" id="foodTitle" required><br><br>
+
+    <label for="foodContent">내용:</label><br>
+    <textarea id="foodContent" rows="4" cols="50" required></textarea><br><br>
+
+    <input type="button" value="수정" onclick="editPost()">
+</form>
+
+</body>
+<script>
+    const url = new URL(window.location.href);
+    const id = url.pathname.split('/').pop();
+
+    fetch(`http://localhost:8080/api/foodboards/${id}`)
+        .then(response => response.json())
+        .then(board => {
+            document.querySelector("#foodId").value = `${board.foodId}`;
+            document.querySelector("#foodTitle").value = `${board.foodTitle}`;
+            document.querySelector("#foodMemberId").value = `${board.foodMemberId}`;
+            document.querySelector("#foodContent").value = `${board.foodContent}`;
+        });
+
+    const editPost = () => {
+        const formData = {
+            foodTitle: document.querySelector("#foodTitle").value,
+            foodContent: document.querySelector("#foodContent").value,
+            foodCreatedAt: new Date().toISOString(),
+            foodMemberId: document.querySelector("#foodMemberId").value
+        };
+
+        $.ajax({
+            type: "PATCH",
+            url: `/api/foodboards/${id}`,
+            data: JSON.stringify(formData),
+            contentType: "application/json;charset=UTF-8",
+            success: function (response) {
+                window.location.href = `/foodboards/${id}`;
+            }
+        });
+    }
+</script>
+</html>
