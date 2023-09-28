@@ -35,13 +35,13 @@ public class TravelBoardController {
         return ResponseEntity.ok(travelBoard);
     }
 
-    @PostMapping
+    @PostMapping("/createBoard")
     public ResponseEntity<?> createTravelBoard(@Valid @RequestBody TravelBoardDto travelBoardDto) {
         TravelBoard travelBoard = travelBoardDto.toTravel();
         return ResponseEntity.ok(travelBoardService.save(travelBoard));
     }
 
-    @PatchMapping("/{id}")
+    @PatchMapping("/updateBoard/{id}")
     public ResponseEntity<?> updateTravelBoard(@PathVariable Long id, @Valid @RequestBody TravelBoardDto travelBoardDto) {
         // 한건 조회
         TravelBoard travelBoard = travelBoardService.findById(id);
@@ -53,7 +53,7 @@ public class TravelBoardController {
         return ResponseEntity.ok(travelBoardService.findById(id));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/deleteBoard/{id}")
     public ResponseEntity<?> deleteTravelBoard(@PathVariable Long id) {
         travelBoardService.deleteById(id);
         return ResponseEntity.noContent().build();

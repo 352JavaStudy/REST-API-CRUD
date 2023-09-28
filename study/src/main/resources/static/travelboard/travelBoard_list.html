@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>게시판 예제</title>
-    <!-- Bootstrap CSS를 추가합니다. -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+    <button class="btn btn-primary" id="createButton">글쓰기</button>
     <div class="container my-3">
         <table class="table">
             <thead class="table-dark">
@@ -22,13 +22,20 @@
         </table>
     </div>
 <script>
+    document.getElementById('createButton').addEventListener('click', function() {
+        window.location.href = "/travelboards/create"
+    });
+
     fetch('http://localhost:8080/api/travelboards')
         .then(response => response.json())
         .then(boards => {
             const boardList = document.getElementById('boardList');
             boards.forEach(board => {
                 const tr = document.createElement('tr');
-                tr.innerHTML = `<td>${board.travelId}</td><td><a>${board.travelTitle}</a></td><td>${board.travelMemberId}</td><td>${board.travelCreatedAt}</td>`;
+                tr.innerHTML = `<td>${board.travelId}</td>
+                                <td><a href="/travelboards/${board.travelId}">${board.travelTitle}</a></td>
+                                <td>${board.travelMemberId}</td>
+                                <td>${board.travelCreatedAt}</td>`;
                 boardList.appendChild(tr);
             });
         })
