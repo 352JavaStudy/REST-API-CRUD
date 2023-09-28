@@ -10,4 +10,5 @@ public class StaticController {
     public String freeBoards() {
         return "forward:/freeBoard_list.html";
     }
+
 }

@@ -22,7 +22,7 @@ public class FreeBoardController {
 
     @GetMapping
     public ResponseEntity<List<FreeBoard>> getBoards() {
-        List<FreeBoard> freeBoard = freeBoardService.findAll();
+        List<FreeBoard> freeBoard = freeBoardService.findAllByOrderByFreeIdDesc();
         return ResponseEntity.ok(freeBoard);
     }
 
