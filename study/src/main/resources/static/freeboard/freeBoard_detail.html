@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>게시판 상세</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container my-3">
+  <h1 id="title"></h1>
+    <p><strong>작성자:</strong> <span id="memberId"></span></p>
+    <p><strong>작성일시:</strong> <span id="createdAt"></span></p>
+  <hr>
+  <div id="content"></div>
+</div>
+<script>
+  const pathArray = window.location.pathname.split('/');
+  const id = pathArray[pathArray.length - 1];
+
+  fetch(`http://localhost:8080/api/freeboards/${id}`)
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok ' + response.statusText);
+            }
+            return response.json();
+          })
+          .then(data => {
+            console.log('data:', data);
+            document.getElementById('title').textContent = data.freeTitle;
+            document.getElementById('memberId').textContent = data.freeMemberId;
+            document.getElementById('createdAt').textContent = data.freeCreatedAt;
+            document.getElementById('content').textContent = data.freeContent;
+          })
+          .catch(error => {
+            console.error('Fetch error: ', error);
+          });
+
+</script>
+</body>
+</html>

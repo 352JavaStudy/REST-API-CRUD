@@ -34,7 +34,7 @@ public class FreeBoardController {
         return  ResponseEntity.ok(freeBoard);
     }
 
-    @PostMapping
+    @PostMapping("/write")
     public ResponseEntity<?> postBoard(@Valid @RequestBody FreeBoardDto freeBoardDto) {
         FreeBoard freeBoard = freeBoardDto.toFreeBoardDto();
         return ResponseEntity.ok(freeBoardService.save(freeBoard));
