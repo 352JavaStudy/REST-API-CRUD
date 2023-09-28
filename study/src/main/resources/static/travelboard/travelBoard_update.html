@@ -4,24 +4,38 @@
     <meta charset="UTF-8">
     <title>게시판 디테일</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<style>
+    .container {
+        width: 1200px;
+    }
+    a {
+        color: #000;
+        text-decoration: none;
+    }
+    #freeContent {
+        resize: none;
+    }
+</style>
 </head>
 <body>
 <h1>게시글 수정하기</h1>
-<form id="updateBoardForm">
-    <p>ID: <span id="travelId"></span></p>
-    <p>작성자: <span id="travelMemberId"></span></p>
-    <div class="mb-3">
-        <label for="travelTitle" class="form-label">제목:</label>
-        <textarea type="text" class="form-control" id="travelTitle" name="travelTitle" required></textarea>
-    </div>
-    <div class="mb-3">
-        <label for="travelContent" class="form-label">내용:</label>
-        <textarea class="form-control" id="travelContent" name="travelContent" required></textarea>
-    </div>
-    <p>작성일: <span id="travelCreatedAt"></span></p>
-</form>
-
+<div class="container mt-5">
+    <a class="navbar-brand" href="/" style="margin-bottom: 50px;">맛있는여행</a>
+    <form id="updateBoardForm">
+        <p>ID: <span id="travelId"></span></p>
+        <p>작성자: <span id="travelMemberId"></span></p>
+        <div class="mb-3">
+            <label for="travelTitle" class="form-label">제목:</label>
+            <textarea type="text" class="form-control" id="travelTitle" name="travelTitle" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="travelContent" class="form-label">내용:</label>
+            <textarea class="form-control" id="travelContent" name="travelContent" required></textarea>
+        </div>
+        <p>작성일: <span id="travelCreatedAt"></span></p>
+    </form>
     <button class="btn btn-primary" id="updateButton">수정하기</button>
+</div>
 
 
 <script>

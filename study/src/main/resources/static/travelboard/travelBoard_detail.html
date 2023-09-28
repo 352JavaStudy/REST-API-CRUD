@@ -4,20 +4,47 @@
     <meta charset="UTF-8">
     <title>게시판 디테일</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .container {
+            width: 1200px;
+            padding: 20px;
+        }
+        a {
+            color: #000;
+            text-decoration: none;
+        }
+        .navbar-brand {
+            font-size: 24px;
+        }
+        .display-4 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #dee2e6;
+            padding-bottom: 10px;
+        }
+        .lead {
+            font-size: 18px;
+        }
+        hr {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border-top: 1px solid #dee2e6;
+        }
+    </style>
 </head>
 <body>
-<h1>게시판 디테일</h1>
-<div>
-    <p>ID: <span id="travelId"></span></p>
-    <p>작성자: <span id="travelMemberId"></span></p>
-    <p>제목: <span id="travelTitle"></span></p>
+<div class="container my-3">
+    <a class="navbar-brand" href="/" style="margin-bottom: 50px;">맛있는여행</a>
+    <h1 >게시판 디테일</h1>
+    <p class="lead">ID: <span id="travelId"></span></p>
+    <p class="lead">작성자: <span id="travelMemberId"></span></p>
+    <p class="display-4">제목: <span id="travelTitle"></span></p>
     <p>내용:</p>
     <div id="travelContent"></div>
     <p>작성일: <span id="travelCreatedAt"></span></p>
-    <button class="btn btn-primary" id="updateButton" style="background-color: #58acfa; border: none;>수정하기</button>
-    <button class="btn btn-primary" id="deleteButton" style="background-color: #c8c8c8; border: none;>삭제하기</button>
-    <button class="btn btn-primary" id="listButton" style="background-color: #c8c8c8; border: none;>목록으로</button>
-
+    <button class="btn btn-primary" id="updateButton" style="background-color: #58acfa; border: none;">수정하기</button>
+    <button class="btn btn-primary" id="deleteButton" style="background-color: #c8c8c8; border: none;">삭제하기</button>
+    <button class="btn btn-primary" id="listButton" style="background-color: #c8c8c8; border: none;">목록으로</button>
 </div>
 
 <script>
