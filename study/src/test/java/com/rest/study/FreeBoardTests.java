@@ -17,8 +17,8 @@ public class FreeBoardTests {
     @Test
     void testJpa() {
         FreeBoard q1 = new FreeBoard();
-        q1.setFreeTitle("배가 고파요");
-        q1.setFreeContent("1. 피자 2. 치킨 뭐 먹을까요?");
+        q1.setFreeTitle("아이유 콘서트 보신 분?");
+        q1.setFreeContent("너무 재밌어요,,,");
         q1.setFreeMemberId("member1");
         q1.setFreeCreatedAt(LocalDateTime.now());
         this.freeBoardRepository.save(q1);

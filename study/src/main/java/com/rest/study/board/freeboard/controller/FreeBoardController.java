@@ -5,12 +5,14 @@ import com.rest.study.board.freeboard.entity.FreeBoard;
 import com.rest.study.board.freeboard.service.FreeBoardService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = "http://localhost:8080")
-@RequestMapping("/freeboards")
+import javax.validation.Valid;
+import java.util.List;
+
+@CrossOrigin(origins = "http://localhost")
+@RequestMapping("/api/freeboards")
 @RestController
 @Slf4j
 public class FreeBoardController {
@@ -19,8 +21,9 @@ public class FreeBoardController {
     private FreeBoardService freeBoardService;
 
     @GetMapping
-    public ResponseEntity<?> getBoards() {
-        return ResponseEntity.ok(freeBoardService.findAll());
+    public ResponseEntity<List<FreeBoard>> getBoards() {
+        List<FreeBoard> freeBoard = freeBoardService.findAll();
+        return ResponseEntity.ok(freeBoard);
     }
 
     @GetMapping("/{id}")
@@ -32,13 +35,13 @@ public class FreeBoardController {
     }
 
     @PostMapping
-    public ResponseEntity<?> postBoard(@RequestBody FreeBoard freeBoard) {
-        FreeBoard saveBoard = freeBoardService.save(freeBoard);
-        return new ResponseEntity(saveBoard, HttpStatus.CREATED);
+    public ResponseEntity<?> postBoard(@Valid @RequestBody FreeBoardDto freeBoardDto) {
+        FreeBoard freeBoard = freeBoardDto.toFreeBoardDto();
+        return ResponseEntity.ok(freeBoardService.save(freeBoard));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> putBoard(@PathVariable("id") Long id, @RequestBody FreeBoardDto freeBoardDto) {
+    public ResponseEntity<?> putBoard(@PathVariable("id") Long id, @Valid @RequestBody FreeBoardDto freeBoardDto) {
         FreeBoard freeBoard = freeBoardService.findById(id);
         freeBoardDto.toFreeBoardDto(freeBoard);
         freeBoardService.save(freeBoard);
