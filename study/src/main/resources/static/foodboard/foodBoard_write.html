@@ -6,10 +6,23 @@
     <title>게시글 작성 페이지</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .container {
+            width: 1200px;
+        }
+        a {
+            color: #000;
+            text-decoration: none;
+        }
+        #freeContent {
+            resize: none;
+        }
+    </style>
 </head>
 <body>
 <div class="container mt-5">
-    <h1>게시글 작성</h1>
+    <a class="navbar-brand" href="/" style="margin-bottom: 50px;">맛있는여행</a>
+    <h1>글 작성</h1>
     <form>
         <div class="mb-3">
             <label for="foodTitle" class="form-label">제목:</label>
@@ -20,8 +33,8 @@
             <label for="foodContent" class="form-label">내용:</label>
             <textarea class="form-control" id="foodContent" rows="4" required></textarea>
         </div>
-
-        <button type="button" class="btn btn-primary" onclick="submitPost()">게시글 작성</button>
+        <button type="button" class="btn btn-primary" style="background-color: #58acfa; border: none;" onclick="submitPost()">게시글 작성</button>
+        <a href="/foodboards" class="btn btn-secondary" style="background-color: #c8c8c8; border: none;">돌아가기</a>
     </form>
 </div>
 

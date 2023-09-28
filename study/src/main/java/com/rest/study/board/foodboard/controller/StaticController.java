@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class StaticController {
 
-    @RequestMapping("/foodboards")
+    @RequestMapping(value="/foodboards", method= RequestMethod.GET)
     public String getFoodBoards() { return "forward:/foodboard/foodBoard_list.html"; }
 
     @RequestMapping(value="/foodboards/{id}", method= RequestMethod.GET)
@@ -23,8 +23,6 @@ public class StaticController {
         return "forward:/index.html";
     }
 
-    @RequestMapping("/foodboards")
-    public String foodBoards() { return "forward:/foodBoard_list.html"; }
 
     @RequestMapping(value ="/freeboards", method = RequestMethod.GET)
     public String freeBoards() { return "forward:/freeboard/freeBoard_list.html";
