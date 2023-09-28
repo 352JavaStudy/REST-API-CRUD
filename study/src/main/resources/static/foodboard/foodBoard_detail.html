@@ -4,19 +4,26 @@
     <meta charset="UTF-8">
     <title>게시글 상세 정보</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<h1>게시글 상세 정보</h1>
-<div class="post-details">
-    <h2 id="post-title"></h2>
-    <p><strong>작성자:</strong> <span id="post-author"></span></p>
-    <p><strong>작성일:</strong> <span id="post-created-at"></span></p>
-    <p><strong>내용:</strong></p>
-    <p id="post-content"></p>
+<div class="container">
+    <h1 class="my-4">게시판 상세 정보</h1>
+    <div class="card">
+        <div class="card-body">
+            <h2 class="card-title" id="foodTitle"></h2>
+            <p class="card-text"><strong>작성자:</strong> <span id="foodMemberId"></span></p>
+            <p class="card-text"><strong>작성일:</strong> <span id="foodCreatedAt"></span></p>
+            <p class="card-text"><strong>내용:</strong></p>
+            <p class="card-text" id="foodContent"></p>
+        </div>
+        <div class="card-footer">
+            <a class="btn btn-primary" href="/foodboards">게시글 목록으로 돌아가기</a>
+            <button class="btn btn-primary" onclick="editPost()">수정하기</button>
+            <button class="btn btn-danger" onclick="deletePost()">삭제하기</button>
+        </div>
+    </div>
 </div>
-<a href="/foodboards">게시글 목록으로 돌아가기</a>
-<button class="btn btn-primary" onclick="editPost()">수정하기</button>
-<button class="btn btn-primary" onclick="deletePost()">삭제하기</button>
 </body>
 <script>
     const url = new URL(window.location.href);
@@ -25,10 +32,10 @@
     fetch(`http://localhost:8080/api/foodboards/${id}`)
         .then(response => response.json())
         .then(board => {
-            document.querySelector("#post-title").innerHTML = `${board.foodTitle}`;
-            document.querySelector("#post-author").innerHTML = `${board.foodMemberId}`;
-            document.querySelector("#post-created-at").innerHTML = `${board.foodCreatedAt}`;
-            document.querySelector("#post-content").innerHTML = `${board.foodContent}`;
+            document.querySelector("#foodTitle").innerHTML = `${board.foodTitle}`;
+            document.querySelector("#foodMemberId").innerHTML = `${board.foodMemberId}`;
+            document.querySelector("#foodCreatedAt").innerHTML = `${board.foodCreatedAt}`;
+            document.querySelector("#foodContent").innerHTML = `${board.foodContent}`;
         });
 
     const editPost = () => {

@@ -5,25 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>게시글 작성 페이지</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<h1>게시글 작성</h1>
-<form>
-    <label for="foodTitle">제목:</label><br>
-    <input type="text" id="foodTitle" required><br><br>
+<div class="container mt-5">
+    <h1>게시글 작성</h1>
+    <form>
+        <div class="mb-3">
+            <label for="foodTitle" class="form-label">제목:</label>
+            <input type="text" class="form-control" id="foodTitle" required>
+        </div>
 
-    <label for="foodContent">내용:</label><br>
-    <textarea id="foodContent" rows="4" cols="50" required></textarea><br><br>
+        <div class="mb-3">
+            <label for="foodContent" class="form-label">내용:</label>
+            <textarea class="form-control" id="foodContent" rows="4" required></textarea>
+        </div>
 
-    <input type="button" value="게시글 작성" onclick="submitPost()">
-</form>
+        <button type="button" class="btn btn-primary" onclick="submitPost()">게시글 작성</button>
+    </form>
+</div>
 
 <script>
     function submitPost() {
         const formData = {
             foodTitle: document.getElementById("foodTitle").value,
             foodContent: document.getElementById("foodContent").value,
-            foodMemberId: "사용자 아이디"
+            foodMemberId: "member2"
         };
 
         $.ajax({
