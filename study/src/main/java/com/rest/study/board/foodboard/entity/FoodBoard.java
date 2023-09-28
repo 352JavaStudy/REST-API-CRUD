@@ -29,8 +29,6 @@ public class FoodBoard {
     private String foodContent;
 
 // TemporalType.TIMESTAMP : date + time 의 timestamp(datetime) 타입
-
-
 //    @Column(nullable = false, columnDefinition = "date default systimestamp")
     @CreationTimestamp
     private Timestamp foodCreatedAt;

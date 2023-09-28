@@ -6,6 +6,7 @@ import com.rest.study.board.foodboard.service.FoodBoardService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +14,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 
-@CrossOrigin(origins ="http://localhost:8080")
+@CrossOrigin(origins ="http://localhost:10000")
 @Slf4j
 @RestController
 @RequestMapping("/foodBoards")
@@ -27,8 +28,8 @@ public class FoodBoardApiController {
     @GetMapping
     public ResponseEntity<List<FoodBoard>> getBoards() {
         // HttpEntity 클래스를 상속받아 구현한 ResponseEntity 응답 데이터(헤더/바디)를 포함한 클래스
-        List<FoodBoard> foodBoards = foodBoardService.findAll();
-        return ResponseEntity.ok(foodBoards);
+        List<FoodBoard> boardList = foodBoardService.findAll();
+        return ResponseEntity.ok(boardList);
     }
 
     @GetMapping("/{id}")
