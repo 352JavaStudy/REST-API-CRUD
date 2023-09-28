@@ -16,6 +16,6 @@ public class StaticController {
 
     @RequestMapping("/travelboards")
     public String travelBoards() {
-        return "forward:/travelboards_list.html";
+        return "forward:/travelBoard_list.html";
     }
 }

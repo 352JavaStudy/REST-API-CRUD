@@ -28,7 +28,7 @@
             const boardList = document.getElementById('boardList');
             boards.forEach(board => {
                 const tr = document.createElement('tr');
-                tr.innerHTML = `<td>${board.travelId}</td><td>${board.travelTitle}</td><td>${board.travelMemberId}</td><td>${board.travelCreatedAt}</td>`;
+                tr.innerHTML = `<td>${board.travelId}</td><td><a>${board.travelTitle}</a></td><td>${board.travelMemberId}</td><td>${board.travelCreatedAt}</td>`;
                 boardList.appendChild(tr);
             });
         })
