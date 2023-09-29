@@ -72,7 +72,7 @@ fetch('http://localhost:8080/api/freeboards')
             tr.innerHTML = `
             <td>${board.freeId}</td>
             <td><a href="/freeboards/${board.freeId}">${board.freeTitle}</a></td>
-            <td>${board.freeMemberId}</td>
+            <td>${board.user.userId}</td>
             <td>${board.freeCreatedAt}</td>`;
             boardList.appendChild(tr);
         });

@@ -23,7 +23,6 @@ public class StaticController {
         return "forward:/index.html";
     }
 
-
     @RequestMapping(value ="/freeboards", method = RequestMethod.GET)
     public String freeBoards() { return "forward:/freeboard/freeBoard_list.html";
     }
@@ -35,6 +34,12 @@ public class StaticController {
 
     @RequestMapping(value = "/freeboards/writeBoard", method = RequestMethod.GET)
     public String writeBoard() { return "forward:/freeboard/freeBoard_write.html";
+    }
+
+    @RequestMapping(value = "/freeboards/updateBoard/{id}", method = RequestMethod.GET)
+    public String updateBoard() {
+        return "forward:/freeboard/freeBoard_update.html";
+
     }
 
     @RequestMapping(value = "/travelboards", method = RequestMethod.GET)
