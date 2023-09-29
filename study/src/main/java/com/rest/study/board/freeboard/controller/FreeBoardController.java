@@ -1,9 +1,6 @@
 package com.rest.study.board.freeboard.controller;
 
-import com.rest.study.board.foodboard.dto.FoodBoardDto;
-import com.rest.study.board.foodboard.dto.FoodBoardReadDto;
 import com.rest.study.board.freeboard.dto.FreeBoardReadDto;
-import com.rest.study.board.freeboard.dto.FreeBoardUpdateDto;
 import com.rest.study.user.entity.User;
 import com.rest.study.user.service.UserService;
 import com.rest.study.board.freeboard.dto.FreeBoardDto;
@@ -56,7 +53,6 @@ public class FreeBoardController {
         FreeBoardReadDto freeBoard = freeBoardService.editBoard(id, freeBoardDto, user);
         return ResponseEntity.ok(freeBoard);
     }
-
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteBoard(@PathVariable("id") Long id){
