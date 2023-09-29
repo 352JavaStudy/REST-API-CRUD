@@ -1,5 +1,7 @@
 package com.rest.study.board.freeboard.controller;
 
+import com.rest.study.board.freeboard.dto.FreeBoardReadDto;
+import com.rest.study.board.freeboard.dto.FreeBoardUpdateDto;
 import com.rest.study.user.entity.User;
 import com.rest.study.user.service.UserService;
 import com.rest.study.board.freeboard.dto.FreeBoardDto;
@@ -32,11 +34,11 @@ public class FreeBoardController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getBoard(@PathVariable Long id) {
-        FreeBoard freeBoard = freeBoardService.findById(id);
+    public ResponseEntity<FreeBoardReadDto> getBoard(@PathVariable Long id) {
+        FreeBoardReadDto freeBoard = freeBoardService.findById(id);
         if(freeBoard == null)
             return ResponseEntity.notFound().build();
-        return  ResponseEntity.ok(freeBoard);
+        return ResponseEntity.ok(freeBoard);
     }
 
     @PostMapping("/write")
@@ -48,13 +50,19 @@ public class FreeBoardController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> putBoard(@PathVariable("id") Long id, @Valid @RequestBody FreeBoardDto freeBoardDto) {
-        FreeBoard freeBoard = freeBoardService.findById(id);
-        User user = userService.findByUserId(freeBoardDto.getFreeUserId());
-        freeBoardDto.toFreeBoardDto(freeBoard, user);
-        freeBoardService.save(freeBoard);
-        return ResponseEntity.ok(freeBoardService.findById(id));
+    public ResponseEntity<FreeBoardReadDto> putBoard(@PathVariable("id") Long id, @Valid @RequestBody FreeBoardUpdateDto updateDto) {
+        FreeBoardReadDto freeBoardReadDto = freeBoardService.findById(id);
+        User user = userService.findByUserId(updateDto.getFreeUserId());
+
+        FreeBoard freeBoard = freeBoardReadDto.toFreeBoard();
+        freeBoard = updateDto.toEntity(freeBoard, user);
+        FreeBoard updatedFreeBoard = freeBoardService.save(freeBoard);
+
+        FreeBoardReadDto readDto = FreeBoardReadDto.toDto(updatedFreeBoard);
+
+        return ResponseEntity.ok(readDto);
     }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteBoard(@PathVariable("id") Long id){
