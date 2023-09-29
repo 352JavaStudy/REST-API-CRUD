@@ -65,6 +65,7 @@
   <h1 id="title" class="display-4"></h1>
   <p class="lead"><strong>작성자:</strong> <span id="userId"></span></p>
   <p class="lead"><strong>작성일시:</strong> <span id="createdAt"></span></p>
+  <p class="lead"><strong>첨부파일:</strong> <span id="images"></span></p>
   <hr>
   <div id="content" class="mb-5"></div>
   <button type="submit" class="btn btn-primary" id="editButton" style="background-color: #58acfa; border: none;">수정하기</button>
@@ -74,6 +75,7 @@
 <script>
 const pathArray = window.location.pathname.split('/');
 const id = pathArray[pathArray.length - 1];
+const imagesElement = document.getElementById('images');
 
 fetch(`http://localhost:8080/api/freeboards/${id}`)
         .then(response => {
@@ -85,9 +87,18 @@ fetch(`http://localhost:8080/api/freeboards/${id}`)
         .then(data => {
           console.log('data:', data);
           document.getElementById('title').textContent = data.freeTitle;
-          document.getElementById('userId').textContent = data.user.userId;
+          document.getElementById('userId').textContent = data.userId;
           document.getElementById('createdAt').textContent = data.freeCreatedAt;
           document.getElementById('content').textContent = data.freeContent;
+
+          // 이미지 정보를 imagesElement에 추가
+          const images = data.images;
+          if (images && images.length > 0) {
+            const imageNames = images.map(image => image.originName).join(', ');
+            imagesElement.textContent = imageNames;
+          } else {
+            imagesElement.textContent = '첨부된 이미지 없음';
+          }
         })
         .catch(error => {
           console.error('에러: ', error);

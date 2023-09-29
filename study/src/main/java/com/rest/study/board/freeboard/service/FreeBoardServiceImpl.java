@@ -38,6 +38,7 @@ public class FreeBoardServiceImpl implements FreeBoardService{
     @Override
     public FreeBoardReadDto findBoard(Long id) {
         return FreeBoardReadDto.toDto(freeBoardRepository.findById(id).orElse(null));
+
     }
 
     @Override
@@ -53,11 +54,9 @@ public class FreeBoardServiceImpl implements FreeBoardService{
                 uploadedImages.add(image);
             }
         }
-
         freeBoard.setImages(uploadedImages);
         return freeBoardRepository.save(freeBoard); // 업데이트된 FreeBoard 객체를 다시 저장
     }
-
 
     @Override
     public void deleteBoard(Long id) {

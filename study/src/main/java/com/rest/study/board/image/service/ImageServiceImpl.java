@@ -56,7 +56,8 @@ public class ImageServiceImpl implements ImageService {
         }
 
         String uploadFileName = StringUtils.cleanPath(file.getOriginalFilename());
-        String realName = UUID.randomUUID().toString() + "_" + uploadFileName;
+        String fileExtension = StringUtils.getFilenameExtension(uploadFileName); // 확장자 추출
+        String realName = UUID.randomUUID().toString() + "." + fileExtension; // UUID와 확장자 합치기
         Path targetLocation = fileDir.resolve(realName);
 
         // 파일 저장
