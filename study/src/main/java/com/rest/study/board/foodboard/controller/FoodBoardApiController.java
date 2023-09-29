@@ -40,7 +40,7 @@ public class FoodBoardApiController {
 
     @GetMapping("/{id}")
     public ResponseEntity<FoodBoardReadDto> getBoard(@PathVariable Long id) {
-        FoodBoardReadDto foodBoard = foodBoardService.findById(id);
+        FoodBoardReadDto foodBoard = foodBoardService.findBoard(id);
         if(foodBoard == null)
                 return ResponseEntity.notFound().build();
         return ResponseEntity.ok(foodBoard);
@@ -55,16 +55,10 @@ public class FoodBoardApiController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<FoodBoard> updateBoard(@PathVariable Long id, @Valid @RequestBody FoodBoardDto foodBoardDto) {
+    public ResponseEntity<FoodBoardReadDto> editBoard(@PathVariable Long id, @Valid @RequestBody FoodBoardDto foodBoardDto) {
         User user = userService.findByUserId(foodBoardDto.getFoodUserId());
-//        FoodBoard board = foodBoardService.findById(id);
-//        if(board == null)
-//            return ResponseEntity.notFound().build();
-//        foodBoardDto.toFoodBoard(board, user);
-//        foodBoardService.save(board);
-//        return ResponseEntity.ok(board);
-
-        return null;
+        FoodBoardReadDto foodBoard = foodBoardService.editBoard(id, foodBoardDto, user);
+        return ResponseEntity.ok(foodBoard);
     }
 
     @DeleteMapping("/{id}")
