@@ -1,8 +1,7 @@
 package com.rest.study.board.image.repository;
 
-import com.rest.study.board.freeboard.entity.FreeBoard;
-import com.rest.study.board.image.entity.Image;
+import com.rest.study.board.image.entity.ImageAttachment;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ImageRepository extends JpaRepository<Image, Long> {
+public interface ImageRepository extends JpaRepository<ImageAttachment, Long> {
 }

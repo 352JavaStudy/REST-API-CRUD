@@ -1,5 +1,6 @@
 package com.rest.study.board.foodboard.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rest.study.board.foodboard.dto.FoodBoardCreateDto;
 import com.rest.study.board.foodboard.dto.FoodBoardReadDto;
 import com.rest.study.board.foodboard.entity.FoodBoard;
@@ -8,9 +9,11 @@ import com.rest.study.user.entity.User;
 import com.rest.study.user.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -30,6 +33,9 @@ public class FoodBoardApiController {
     @Autowired
     private FoodBoardService foodBoardService;
 
+    @Autowired
+    private ObjectMapper objectMapper;
+
     @GetMapping
     public ResponseEntity<List<FoodBoardReadDto>> getBoards() {
         return ResponseEntity.ok(foodBoardService.findBoards());
@@ -40,11 +46,10 @@ public class FoodBoardApiController {
         return ResponseEntity.ok(foodBoardService.findBoard(id));
     }
 
-    @PostMapping
-    public ResponseEntity<FoodBoard> writeBoard(@Valid @RequestBody FoodBoardCreateDto foodBoardDto, BindingResult bindingResult) {
-        User user = userService.findByUserId(foodBoardDto.getFoodUserId());
-        FoodBoard foodBoard = foodBoardDto.toFoodBoard(user);
-        return ResponseEntity.ok(foodBoardService.save(foodBoard));
+    // 이미지를 넣기 위해 form-data로 데이터를 받기 때문에 RequestBody 삭제
+    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<FoodBoardReadDto> writeBoard(@Valid @ModelAttribute FoodBoardCreateDto foodBoardCreateDto) {
+        return ResponseEntity.ok(foodBoardService.writeBoard(foodBoardCreateDto));
     }
 
     @PatchMapping("/{id}")
@@ -54,7 +59,7 @@ public class FoodBoardApiController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<FoodBoard> deleteBoard(@PathVariable Long id) {
+    public ResponseEntity<?> deleteBoard(@PathVariable Long id) {
         foodBoardService.deleteById(id);
         return ResponseEntity.noContent().build();
     }

@@ -9,7 +9,9 @@ import java.util.List;
 
 public interface FoodBoardService {
     FoodBoardReadDto findBoard(Long id);
-    FoodBoard save(FoodBoard foodBoard);
+
+    FoodBoardReadDto writeBoard(FoodBoardCreateDto foodBoard);
+
     void deleteById(Long id);
 
     FoodBoardReadDto editBoard(Long id, FoodBoardCreateDto foodBoardDto, User user);

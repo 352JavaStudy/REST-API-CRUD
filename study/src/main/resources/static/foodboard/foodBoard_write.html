@@ -23,12 +23,15 @@
 <div class="container mt-5">
     <a class="navbar-brand" href="/" style="margin-bottom: 50px;">맛있는여행</a>
     <h1>글 작성</h1>
-    <form>
+    <form enctype="multipart/form-data">
         <div class="mb-3">
             <label for="foodTitle" class="form-label">제목:</label>
             <input type="text" class="form-control" id="foodTitle" required>
         </div>
-
+        <div class="form-group">
+                <label for="file">파일 선택</label>
+                <input type="file" class="form-control-file" id="file" name="file">
+        </div>
         <div class="mb-3">
             <label for="foodContent" class="form-label">내용:</label>
             <textarea class="form-control" id="foodContent" rows="4" required></textarea>
@@ -40,18 +43,19 @@
 
 <script>
     function submitPost() {
-        const formData = {
-            foodTitle: document.getElementById("foodTitle").value,
-            foodContent: document.getElementById("foodContent").value,
-            foodUserId: "user1"
-        };
+        const formData = new FormData();
+        formData.append("foodTitle", document.getElementById("foodTitle").value);
+        formData.append("foodContent", document.getElementById("foodContent").value);
+        formData.append("foodUserId", "user1");
+
+        const fileInput = document.getElementById("file");
+        if (fileInput.files.length > 0) {
+            formData.append("images", fileInput.files[0]);
+        }
 
         fetch("/api/foodboards", {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json;charset=UTF-8"
-            },
-            body: JSON.stringify(formData)
+            body: formData
         })
             .then(response => {
                 if (response.ok) {

@@ -1,12 +1,12 @@
 package com.rest.study.board.image.entity;
 
+import com.rest.study.board.foodboard.entity.FoodBoard;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
 
 @SequenceGenerator(name = "SEQ_IMAGE_ID", sequenceName = "SEQ_IMAGE_ID", initialValue = 1, allocationSize = 1)
 @Data
@@ -14,21 +14,23 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @Builder
 @Entity
-public class Image {
+public class ImageAttachment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_IMAGE_ID")
     private Long imageId;
 
     @Column(nullable = false)
-    private String imageOriginalFilename;
+    private String originName;
 
     @Column(nullable = false)
-    private String imageRenamedFilename;
+    private String uniqueName;
 
     @Column(nullable = false)
     private Long imageFileSize;
 
-    private Timestamp imageCreatedAt;
+    @ManyToOne
+    @JoinColumn(name="FOOD_ID")
+    private FoodBoard foodBoard;
 
 }

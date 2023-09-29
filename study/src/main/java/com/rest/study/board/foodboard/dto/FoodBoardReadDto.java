@@ -1,14 +1,11 @@
 package com.rest.study.board.foodboard.dto;
 
 import com.rest.study.board.foodboard.entity.FoodBoard;
+import com.rest.study.board.image.entity.ImageAttachment;
 import com.rest.study.user.entity.User;
 import lombok.Builder;
 import lombok.Data;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
-import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Data
@@ -19,6 +16,7 @@ public class FoodBoardReadDto {
     private String foodTitle;
     private String foodContent;
     private Timestamp foodCreatedAt;
+    private ImageAttachment images;
 
     public static FoodBoardReadDto toDto(FoodBoard foodBoard) {
         return FoodBoardReadDto.builder()
@@ -39,5 +37,4 @@ public class FoodBoardReadDto {
                 .user(user)
                 .build();
     }
-
 }

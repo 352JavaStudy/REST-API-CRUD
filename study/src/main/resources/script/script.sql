@@ -31,7 +31,7 @@ create table free_board(
     constraints fk_free_member_id foreign key(free_member_id) references member(member_id) on delete cascade
 );
 
-
+select * from food_board;
 -- 맛집 게시판 테이블
 create table food_board(
     food_id number,
@@ -39,8 +39,10 @@ create table food_board(
     food_title varchar2(500) not null,
     food_content varchar2(4000) not null,
     food_created_at date default sysdate,
+    food_image_id number,
     constraints pk_food_id primary key(food_id),
-    constraints fk_food_member_id foreign key(food_member_id) references member(member_id) on delete cascade
+    constraints fk_food_user_id foreign key(food_user_id) references user_tbl(user_id) on delete cascade,
+    constraints fk_food_image_id foreign key(food_image_id) references image_attachment(image_id) on delete cascade
 );
 
 
@@ -68,14 +70,14 @@ create table image_attachment (
 
 
 -- 이미지 파일 매핑 테이블
-create table image_attachment_mapping (
-    mapping_id number,
-    ref_table varchar2(50) not null,
-    ref_id number not null,
-    image_id number not null,
-    constraint pk_question_image_mapping_id primary key(mapping_id),
-    constraint fk_image_id foreign key(image_id) references image_attachment(image_id) on delete cascade
-);
+--create table image_attachment_mapping (
+--    mapping_id number,
+--    ref_table varchar2(50) not null,
+--    ref_id number not null,
+--    image_id number not null,
+--    constraint pk_question_image_mapping_id primary key(mapping_id),
+--    constraint fk_image_id foreign key(image_id) references image_attachment(image_id) on delete cascade
+--);
 
 
 

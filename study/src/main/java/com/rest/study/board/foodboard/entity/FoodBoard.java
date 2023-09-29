@@ -1,5 +1,6 @@
 package com.rest.study.board.foodboard.entity;
 
+import com.rest.study.board.image.entity.ImageAttachment;
 import com.rest.study.user.entity.User;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -8,6 +9,7 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.List;
 
 
 @Data
@@ -34,6 +36,9 @@ public class FoodBoard {
 
     @Column(nullable = false, length = 4000)
     private String foodContent;
+
+    @OneToMany(mappedBy = "foodBoard", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    private List<ImageAttachment> images;
 
 // TemporalType.TIMESTAMP : date + time 의 timestamp(datetime) 타입
 // @Column(nullable = false, columnDefinition = "date default systimestamp")
