@@ -1,8 +1,11 @@
 package com.rest.study.board.foodboard.controller;
 
 import com.rest.study.board.foodboard.dto.FoodBoardDto;
+import com.rest.study.board.foodboard.dto.FoodBoardReadDto;
 import com.rest.study.board.foodboard.entity.FoodBoard;
 import com.rest.study.board.foodboard.service.FoodBoardService;
+import com.rest.study.user.entity.User;
+import com.rest.study.user.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +26,9 @@ import java.util.List;
 public class FoodBoardApiController {
 
     @Autowired
+    private UserService userService;
+
+    @Autowired
     private FoodBoardService foodBoardService;
 
     @GetMapping
@@ -33,8 +39,8 @@ public class FoodBoardApiController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<FoodBoard> getBoard(@PathVariable Long id) {
-        FoodBoard foodBoard = foodBoardService.findById(id);
+    public ResponseEntity<FoodBoardReadDto> getBoard(@PathVariable Long id) {
+        FoodBoardReadDto foodBoard = foodBoardService.findById(id);
         if(foodBoard == null)
                 return ResponseEntity.notFound().build();
         return ResponseEntity.ok(foodBoard);
@@ -43,18 +49,22 @@ public class FoodBoardApiController {
 
     @PostMapping
     public ResponseEntity<FoodBoard> writeBoard(@Valid @RequestBody FoodBoardDto foodBoardDto, BindingResult bindingResult) {
-        FoodBoard foodBoard = foodBoardDto.toFoodBoard();
+        User user = userService.findByUserId(foodBoardDto.getFoodUserId());
+        FoodBoard foodBoard = foodBoardDto.toFoodBoard(user);
         return ResponseEntity.ok(foodBoardService.save(foodBoard));
     }
 
     @PatchMapping("/{id}")
     public ResponseEntity<FoodBoard> updateBoard(@PathVariable Long id, @Valid @RequestBody FoodBoardDto foodBoardDto) {
-        FoodBoard board = foodBoardService.findById(id);
-        if(board == null)
-            return ResponseEntity.notFound().build();
-        foodBoardDto.toFoodBoard(board);
-        foodBoardService.save(board);
-        return ResponseEntity.ok(board);
+        User user = userService.findByUserId(foodBoardDto.getFoodUserId());
+//        FoodBoard board = foodBoardService.findById(id);
+//        if(board == null)
+//            return ResponseEntity.notFound().build();
+//        foodBoardDto.toFoodBoard(board, user);
+//        foodBoardService.save(board);
+//        return ResponseEntity.ok(board);
+
+        return null;
     }
 
     @DeleteMapping("/{id}")

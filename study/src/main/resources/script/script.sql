@@ -1,21 +1,22 @@
 
-drop table member;
+drop table user;
 drop table free_board;
 drop table food_board;
 drop table travel_board;
 drop table image_attachment;
 drop table image_attachment_mapping;
 
+select * from "USER";
 
 -- 회원 테이블
-create table user (
+create table "USER" (
     user_id varchar2(50),
     name varchar2(10),
     password varchar2(300) not null,
     email varchar2(100),
     phone varchar2(20),
     enroll_date date default sysdate,
-    constraints pk_member_id primary key(member_id)
+    constraints pk_member_id primary key(user_id)
 );
 
 
