@@ -1,5 +1,6 @@
 package com.rest.study.board.foodboard.service;
 
+import com.rest.study.board.foodboard.dto.FoodBoardReadDto;
 import com.rest.study.board.foodboard.entity.FoodBoard;
 import com.rest.study.board.foodboard.repository.FoodBoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +22,8 @@ public class FoodBoardServiceImpl implements FoodBoardService{
     }
 
     @Override
-    public FoodBoard findById(Long id) {
-        return foodBoardRepository.findById(id).orElse(null);
+    public FoodBoardReadDto findById(Long id) {
+        return FoodBoardReadDto.toDto(foodBoardRepository.findById(id).orElse(null));
     }
 
     @Override
