@@ -1,4 +1,4 @@
-package com.rest.study.board.foodboard.controller;
+package com.rest.study.common.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
