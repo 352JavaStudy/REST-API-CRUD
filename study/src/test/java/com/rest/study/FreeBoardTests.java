@@ -1,5 +1,6 @@
 package com.rest.study;
 
+import com.rest.study.user.entity.User;
 import com.rest.study.board.freeboard.entity.FreeBoard;
 import com.rest.study.board.freeboard.repository.FreeBoardRepository;
 import org.junit.jupiter.api.Test;
@@ -19,7 +20,11 @@ public class FreeBoardTests {
         FreeBoard q1 = new FreeBoard();
         q1.setFreeTitle("아이유 콘서트 보신 분?");
         q1.setFreeContent("너무 재밌어요,,,");
-        q1.setFreeMemberId("member1");
+
+        User user = new User();
+        user.setUserId("user1");
+
+        q1.setUser(user);
         q1.setFreeCreatedAt(LocalDateTime.now());
         this.freeBoardRepository.save(q1);
     }

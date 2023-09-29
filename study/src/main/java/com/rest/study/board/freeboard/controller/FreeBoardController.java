@@ -1,5 +1,7 @@
 package com.rest.study.board.freeboard.controller;
 
+import com.rest.study.user.entity.User;
+import com.rest.study.user.service.UserService;
 import com.rest.study.board.freeboard.dto.FreeBoardDto;
 import com.rest.study.board.freeboard.entity.FreeBoard;
 import com.rest.study.board.freeboard.service.FreeBoardService;
@@ -20,6 +22,9 @@ public class FreeBoardController {
     @Autowired
     private FreeBoardService freeBoardService;
 
+    @Autowired
+    private UserService userService;
+
     @GetMapping
     public ResponseEntity<List<FreeBoard>> getBoards() {
         List<FreeBoard> freeBoard = freeBoardService.findAllByOrderByFreeIdDesc();
@@ -36,14 +41,17 @@ public class FreeBoardController {
 
     @PostMapping("/write")
     public ResponseEntity<?> postBoard(@Valid @RequestBody FreeBoardDto freeBoardDto) {
-        FreeBoard freeBoard = freeBoardDto.toFreeBoardDto();
-        return ResponseEntity.ok(freeBoardService.save(freeBoard));
+        User user = userService.findByUserId(freeBoardDto.getFreeUserId());
+        FreeBoard freeBoard = freeBoardDto.toFreeBoardDto(user);
+        freeBoard = freeBoardService.save(freeBoard);
+        return ResponseEntity.ok(freeBoard);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<?> putBoard(@PathVariable("id") Long id, @Valid @RequestBody FreeBoardDto freeBoardDto) {
         FreeBoard freeBoard = freeBoardService.findById(id);
-        freeBoardDto.toFreeBoardDto(freeBoard);
+        User user = userService.findByUserId(freeBoardDto.getFreeUserId());
+        freeBoardDto.toFreeBoardDto(freeBoard, user);
         freeBoardService.save(freeBoard);
         return ResponseEntity.ok(freeBoardService.findById(id));
     }
