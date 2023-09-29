@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Data
 public class FoodBoardDto {
 
-    private User user;
+//    private User user;
 
     @NotBlank(message = "제목은 필수입니다.")
     private String foodTitle;
@@ -26,7 +26,7 @@ public class FoodBoardDto {
         return FoodBoard.builder()
                 .foodContent(foodContent)
                 .foodTitle(foodTitle)
-                .user(user)
+//                .user(user)
                 .foodCreatedAt(Timestamp.valueOf(LocalDateTime.now()))
                 .build();
     }

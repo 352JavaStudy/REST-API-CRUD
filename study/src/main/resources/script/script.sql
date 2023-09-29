@@ -6,6 +6,7 @@ drop table travel_board;
 drop table image_attachment;
 drop table image_attachment_mapping;
 
+select * from "USER";
 
 -- 회원 테이블
 create table "USER" (
