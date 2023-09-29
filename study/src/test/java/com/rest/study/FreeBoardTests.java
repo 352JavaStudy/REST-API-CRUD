@@ -25,7 +25,6 @@ public class FreeBoardTests {
         user.setUserId("user1");
 
         q1.setUser(user);
-        q1.setFreeCreatedAt(LocalDateTime.now());
         this.freeBoardRepository.save(q1);
     }
 }

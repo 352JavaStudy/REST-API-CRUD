@@ -10,6 +10,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @SequenceGenerator(name = "SEQ_FREE_BOARD_ID", sequenceName = "SEQ_FREE_BOARD_ID", initialValue = 1, allocationSize = 1)
@@ -30,12 +31,12 @@ public class FreeBoard {
     @Column(nullable = false)
     private String freeContent;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "FREE_USER_ID", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private User user;
 
     @CreationTimestamp
-    private LocalDateTime freeCreatedAt;
+    private Timestamp freeCreatedAt;
 
 }

@@ -58,5 +58,4 @@ public class FoodBoardApiController {
         foodBoardService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
-
 }

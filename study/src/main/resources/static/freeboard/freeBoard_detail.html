@@ -63,7 +63,7 @@
     </div>
   </nav>
   <h1 id="title" class="display-4"></h1>
-  <p class="lead"><strong>작성자:</strong> <span id="memberId"></span></p>
+  <p class="lead"><strong>작성자:</strong> <span id="userId"></span></p>
   <p class="lead"><strong>작성일시:</strong> <span id="createdAt"></span></p>
   <hr>
   <div id="content" class="mb-5"></div>
@@ -85,7 +85,7 @@ fetch(`http://localhost:8080/api/freeboards/${id}`)
         .then(data => {
           console.log('data:', data);
           document.getElementById('title').textContent = data.freeTitle;
-          document.getElementById('memberId').textContent = data.freeMemberId;
+          document.getElementById('userId').textContent = data.user.userId;
           document.getElementById('createdAt').textContent = data.freeCreatedAt;
           document.getElementById('content').textContent = data.freeContent;
         })
