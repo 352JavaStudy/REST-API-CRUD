@@ -49,12 +49,21 @@
     const id = url.pathname.split('/').pop();
 
     fetch(`http://localhost:8080/api/foodboards/${id}`)
-        .then(response => response.json())
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw new Error("Network response was not ok");
+        })
         .then(board => {
             document.querySelector("#foodId").value = `${board.foodId}`;
             document.querySelector("#foodTitle").value = `${board.foodTitle}`;
             document.querySelector("#foodMemberId").value = `${board.foodMemberId}`;
             document.querySelector("#foodContent").value = `${board.foodContent}`;
+        })
+        .catch(error => {
+            // 오류 처리
+            console.error("Fetch error:", error);
         });
 
     const editPost = () => {
@@ -65,15 +74,26 @@
             foodMemberId: document.querySelector("#foodMemberId").value
         };
 
-        $.ajax({
-            type: "PATCH",
-            url: `/api/foodboards/${id}`,
-            data: JSON.stringify(formData),
-            contentType: "application/json;charset=UTF-8",
-            success: function (response) {
+        fetch(`/api/foodboards/${id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json;charset=UTF-8"
+            },
+            body: JSON.stringify(formData)
+        })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                }
+                throw new Error("네트워크 통신 오류");
+            })
+            .then(response => {
                 window.location.href = `/foodboards/${id}`;
-            }
-        });
+            })
+            .catch(error => {
+                // 오류 처리
+                console.error("Fetch error:", error);
+            });
     }
 </script>
 </html>

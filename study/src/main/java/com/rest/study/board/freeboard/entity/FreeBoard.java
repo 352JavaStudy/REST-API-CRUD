@@ -1,6 +1,5 @@
 package com.rest.study.board.freeboard.entity;
 
-import com.rest.study.member.entity.Member;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

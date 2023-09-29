@@ -1,4 +1,4 @@
-package com.rest.study.member.entity;
+package com.rest.study.user.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
@@ -15,9 +15,10 @@ import java.sql.Date;
 @AllArgsConstructor
 @Builder
 @Entity
-public class Member {
+@Table(name = "\"USER\"")
+public class User {
     @Id
-    private String memberId;
+    private String userId;
 
     @Column(nullable = false)
     private String name;

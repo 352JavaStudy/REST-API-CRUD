@@ -64,14 +64,21 @@
     };
 
     const deletePost = () => {
-        $.ajax({
-            type: "DELETE",
-            url: `/api/foodboards/${id}`,
-            data: `${id}`,
-            contentType: "application/json;charset=UTF-8",
-            success: function (response) {
-                window.location.href = `/foodboards`;
+        fetch(`/api/foodboards/${id}`, {
+            method: "DELETE",
+            header: {
+                "Content-Type": "application/json;charset=UTF-8"
+            },
+            body: JSON.stringify(id)
+        }).then(response => {
+            if (response.ok) {
+                return response.json();
             }
+            throw new Error("네트워크 오류");
+        }).then(response => {
+            window.location.href = `/foodboards`;
+        }).catch(error => {
+            console.error("Fetch error:", error);
         });
     }
 </script>
