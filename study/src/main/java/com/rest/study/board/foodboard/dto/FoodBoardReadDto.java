@@ -29,4 +29,15 @@ public class FoodBoardReadDto {
                 .userId(foodBoard.getUser().getUserId())
                 .build();
     }
+
+    public FoodBoard toEntity(FoodBoardReadDto foodBoard, User user) {
+        return FoodBoard.builder()
+                .foodId(foodBoard.getFoodId())
+                .foodContent(foodBoard.getFoodContent())
+                .foodTitle(foodBoard.getFoodTitle())
+                .foodCreatedAt(foodBoard.getFoodCreatedAt())
+                .user(user)
+                .build();
+    }
+
 }
