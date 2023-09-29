@@ -1,5 +1,7 @@
 package com.rest.study.board.freeboard.controller;
 
+import com.rest.study.board.foodboard.dto.FoodBoardDto;
+import com.rest.study.board.foodboard.dto.FoodBoardReadDto;
 import com.rest.study.board.freeboard.dto.FreeBoardReadDto;
 import com.rest.study.board.freeboard.dto.FreeBoardUpdateDto;
 import com.rest.study.user.entity.User;
@@ -35,38 +37,30 @@ public class FreeBoardController {
 
     @GetMapping("/{id}")
     public ResponseEntity<FreeBoardReadDto> getBoard(@PathVariable Long id) {
-        FreeBoardReadDto freeBoard = freeBoardService.findById(id);
+        FreeBoardReadDto freeBoard = freeBoardService.findBoard(id);
         if(freeBoard == null)
             return ResponseEntity.notFound().build();
         return ResponseEntity.ok(freeBoard);
     }
 
     @PostMapping("/write")
-    public ResponseEntity<?> postBoard(@Valid @RequestBody FreeBoardDto freeBoardDto) {
+    public ResponseEntity<?> writeBoard(@Valid @RequestBody FreeBoardDto freeBoardDto) {
         User user = userService.findByUserId(freeBoardDto.getFreeUserId());
         FreeBoard freeBoard = freeBoardDto.toFreeBoardDto(user);
-        freeBoard = freeBoardService.save(freeBoard);
-        return ResponseEntity.ok(freeBoard);
+        return ResponseEntity.ok(freeBoardService.save(freeBoard));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<FreeBoardReadDto> putBoard(@PathVariable("id") Long id, @Valid @RequestBody FreeBoardUpdateDto updateDto) {
-        FreeBoardReadDto freeBoardReadDto = freeBoardService.findById(id);
-        User user = userService.findByUserId(updateDto.getFreeUserId());
-
-        FreeBoard freeBoard = freeBoardReadDto.toFreeBoard();
-        freeBoard = updateDto.toEntity(freeBoard, user);
-        FreeBoard updatedFreeBoard = freeBoardService.save(freeBoard);
-
-        FreeBoardReadDto readDto = FreeBoardReadDto.toDto(updatedFreeBoard);
-
-        return ResponseEntity.ok(readDto);
+    public ResponseEntity<FreeBoardReadDto> editBoard(@PathVariable("id") Long id, @Valid @RequestBody FreeBoardDto freeBoardDto) {
+        User user = userService.findByUserId(freeBoardDto.getFreeUserId());
+        FreeBoardReadDto freeBoard = freeBoardService.editBoard(id, freeBoardDto, user);
+        return ResponseEntity.ok(freeBoard);
     }
 
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteBoard(@PathVariable("id") Long id){
-        freeBoardService.deleteById(id);
+        freeBoardService.deleteBoard(id);
         return ResponseEntity.noContent().build();
     }
 }

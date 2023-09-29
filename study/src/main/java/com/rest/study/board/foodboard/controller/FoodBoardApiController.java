@@ -46,7 +46,6 @@ public class FoodBoardApiController {
         return ResponseEntity.ok(foodBoard);
     }
 
-
     @PostMapping
     public ResponseEntity<FoodBoard> writeBoard(@Valid @RequestBody FoodBoardDto foodBoardDto, BindingResult bindingResult) {
         User user = userService.findByUserId(foodBoardDto.getFoodUserId());
@@ -66,5 +65,4 @@ public class FoodBoardApiController {
         foodBoardService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
-
 }
