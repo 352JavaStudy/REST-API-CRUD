@@ -1,6 +1,6 @@
 package com.rest.study.board.foodboard.service;
 
-import com.rest.study.board.foodboard.dto.FoodBoardDto;
+import com.rest.study.board.foodboard.dto.FoodBoardCreateDto;
 import com.rest.study.board.foodboard.dto.FoodBoardReadDto;
 import com.rest.study.board.foodboard.entity.FoodBoard;
 import com.rest.study.board.foodboard.repository.FoodBoardRepository;
@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
-import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -52,7 +51,7 @@ public class FoodBoardServiceImpl implements FoodBoardService{
     }
 
     @Override
-    public FoodBoardReadDto editBoard(Long id, FoodBoardDto foodBoardDto, User user) {
+    public FoodBoardReadDto editBoard(Long id, FoodBoardCreateDto foodBoardDto, User user) {
         Optional<FoodBoard> optionalFoodBoard = foodBoardRepository.findById(id);
         if (optionalFoodBoard.isPresent()) {
             FoodBoard foodBoard = optionalFoodBoard.get();

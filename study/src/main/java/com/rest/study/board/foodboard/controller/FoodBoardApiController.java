@@ -1,6 +1,6 @@
 package com.rest.study.board.foodboard.controller;
 
-import com.rest.study.board.foodboard.dto.FoodBoardDto;
+import com.rest.study.board.foodboard.dto.FoodBoardCreateDto;
 import com.rest.study.board.foodboard.dto.FoodBoardReadDto;
 import com.rest.study.board.foodboard.entity.FoodBoard;
 import com.rest.study.board.foodboard.service.FoodBoardService;
@@ -9,7 +9,6 @@ import com.rest.study.user.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,14 +41,14 @@ public class FoodBoardApiController {
     }
 
     @PostMapping
-    public ResponseEntity<FoodBoard> writeBoard(@Valid @RequestBody FoodBoardDto foodBoardDto, BindingResult bindingResult) {
+    public ResponseEntity<FoodBoard> writeBoard(@Valid @RequestBody FoodBoardCreateDto foodBoardDto, BindingResult bindingResult) {
         User user = userService.findByUserId(foodBoardDto.getFoodUserId());
         FoodBoard foodBoard = foodBoardDto.toFoodBoard(user);
         return ResponseEntity.ok(foodBoardService.save(foodBoard));
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<FoodBoardReadDto> editBoard(@PathVariable Long id, @Valid @RequestBody FoodBoardDto foodBoardDto) {
+    public ResponseEntity<FoodBoardReadDto> editBoard(@PathVariable Long id, @Valid @RequestBody FoodBoardCreateDto foodBoardDto) {
         User user = userService.findByUserId(foodBoardDto.getFoodUserId());
         return ResponseEntity.ok(foodBoardService.editBoard(id, foodBoardDto, user));
     }

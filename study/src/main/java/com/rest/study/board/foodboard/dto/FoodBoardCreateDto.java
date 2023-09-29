@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @Data
-public class FoodBoardDto {
+public class FoodBoardCreateDto {
 
 //    private User user;
     private String foodUserId;
