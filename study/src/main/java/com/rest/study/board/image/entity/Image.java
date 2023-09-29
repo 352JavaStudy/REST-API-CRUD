@@ -1,5 +1,6 @@
 package com.rest.study.board.image.entity;
 
+import com.rest.study.board.freeboard.entity.FreeBoard;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,6 +15,7 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @Builder
 @Entity
+@Table(name = "image_attachment")
 public class Image {
 
     @Id
@@ -29,6 +31,8 @@ public class Image {
     @Column(nullable = false)
     private Long imageFileSize;
 
-    private Timestamp imageCreatedAt;
+    @ManyToOne
+    @JoinColumn(name = "FREE_ID")
+    private FreeBoard freeBoard;
 
 }

@@ -4,12 +4,17 @@ import com.rest.study.board.freeboard.dto.FreeBoardDto;
 import com.rest.study.board.freeboard.dto.FreeBoardReadDto;
 import com.rest.study.board.freeboard.entity.FreeBoard;
 import com.rest.study.board.freeboard.repository.FreeBoardRepository;
+import com.rest.study.board.image.entity.Image;
+import com.rest.study.board.image.service.ImageService;
 import com.rest.study.user.entity.User;
 import com.rest.study.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -22,6 +27,9 @@ public class FreeBoardServiceImpl implements FreeBoardService{
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private ImageService imageService;
+
     @Override
     public List<FreeBoard> findAllByOrderByFreeIdDesc() {
         return freeBoardRepository.findAllByOrderByFreeIdDesc();
@@ -33,9 +41,23 @@ public class FreeBoardServiceImpl implements FreeBoardService{
     }
 
     @Override
-    public FreeBoard save(FreeBoard freeBoard) {
-        return freeBoardRepository.save(freeBoard);
+    public FreeBoard save(FreeBoardDto freeBoardDto, List<MultipartFile> images) throws IOException {
+        User user = userRepository.findByUserId(freeBoardDto.getFreeUserId());
+        FreeBoard freeBoard = freeBoardDto.toFreeBoardDto(user, null);
+        freeBoard = freeBoardRepository.save(freeBoard); // 먼저 FreeBoard 객체를 저장
+
+        List<Image> uploadedImages = new ArrayList<>();
+        if (images != null) {
+            for (MultipartFile file : images) {
+                Image image = (Image) imageService.uploadFile(file, freeBoard);
+                uploadedImages.add(image);
+            }
+        }
+
+        freeBoard.setImages(uploadedImages);
+        return freeBoardRepository.save(freeBoard); // 업데이트된 FreeBoard 객체를 다시 저장
     }
+
 
     @Override
     public void deleteBoard(Long id) {

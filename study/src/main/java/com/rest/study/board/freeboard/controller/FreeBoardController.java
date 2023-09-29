@@ -1,6 +1,8 @@
 package com.rest.study.board.freeboard.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rest.study.board.freeboard.dto.FreeBoardReadDto;
+import com.rest.study.board.image.entity.Image;
 import com.rest.study.user.entity.User;
 import com.rest.study.user.service.UserService;
 import com.rest.study.board.freeboard.dto.FreeBoardDto;
@@ -10,8 +12,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost")
@@ -41,10 +45,16 @@ public class FreeBoardController {
     }
 
     @PostMapping("/write")
-    public ResponseEntity<?> writeBoard(@Valid @RequestBody FreeBoardDto freeBoardDto) {
-        User user = userService.findByUserId(freeBoardDto.getFreeUserId());
-        FreeBoard freeBoard = freeBoardDto.toFreeBoardDto(user);
-        return ResponseEntity.ok(freeBoardService.save(freeBoard));
+    public ResponseEntity<?> writeBoard(
+            @RequestParam("freeBoardDto") String freeBoardDtoStr,
+            @RequestParam(value = "images", required = false) List<MultipartFile> images) throws IOException {
+
+        // Jackson 라이브러리를 사용해서 JSON 문자열을 Java 객체로 변환하기 위한 ObjectMapper 객체를 생성
+        ObjectMapper objectMapper = new ObjectMapper();
+        FreeBoardDto freeBoardDto = objectMapper.readValue(freeBoardDtoStr, FreeBoardDto.class);
+
+        FreeBoard freeBoard = freeBoardService.save(freeBoardDto, images);
+        return ResponseEntity.ok(freeBoard);
     }
 
     @PutMapping("/{id}")

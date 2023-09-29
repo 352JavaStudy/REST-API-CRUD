@@ -1,5 +1,6 @@
 package com.rest.study.board.freeboard.dto;
 
+import com.rest.study.board.image.entity.Image;
 import com.rest.study.user.entity.User;
 import com.rest.study.board.freeboard.entity.FreeBoard;
 import lombok.AllArgsConstructor;
@@ -7,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -18,7 +20,8 @@ public class FreeBoardDto {
     private String freeTitle;
     @NotBlank(message = "내용은 필수입니다.")
     private String freeContent;
-
+    
+    private List<Image> images;
     public FreeBoard toFreeBoardDto(FreeBoard freeBoard, User user) {
                 freeBoard.setFreeTitle(freeTitle);
                 freeBoard.setFreeContent(freeContent);
@@ -26,12 +29,14 @@ public class FreeBoardDto {
                 return freeBoard;
     }
 
-    public FreeBoard toFreeBoardDto(User user) {
+    public FreeBoard toFreeBoardDto(User user, List<Image> images) {
         return FreeBoard.builder()
                 .user(user)
                 .freeTitle(freeTitle)
                 .freeContent(freeContent)
+                .images(images)
                 .build();
     }
+
 }
 
