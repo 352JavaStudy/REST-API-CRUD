@@ -21,7 +21,7 @@ class FoodBoardApiControllerTest {
         FoodBoard f1 = new FoodBoard();
         f1.setFoodTitle("두 어노테이션의 차이");
         f1.setFoodContent("그냥 냅다 해보면 됩니다.");
-        f1.setFoodMemberId("kimnana");
+        //f1.setFoodMemberId("kimnana");
         f1.setFoodCreatedAt(Timestamp.valueOf(LocalDateTime.now()));
         this.foodBoardRepository.save(f1);
     }

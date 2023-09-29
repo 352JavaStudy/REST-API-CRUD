@@ -46,15 +46,26 @@
             foodMemberId: "member2"
         };
 
-        $.ajax({
-            type: "POST",
-            url: "/api/foodboards",
-            data: JSON.stringify(formData),
-            contentType: "application/json;charset=UTF-8",
-            success: function (response) {
+        fetch("/api/foodboards", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json;charset=UTF-8"
+            },
+            body: JSON.stringify(formData)
+        })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error("Network response was not ok");
+                }
+            })
+            .then(data => {
                 window.location.href = "/foodboards";
-            }
-        });
+            })
+            .catch(error => {
+                console.error("Fetch error:", error);
+            });
     }
 </script>
 </body>
