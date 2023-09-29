@@ -1,6 +1,6 @@
 package com.rest.study;
 
-import com.rest.study.User.entity.User;
+import com.rest.study.user.entity.User;
 import com.rest.study.board.freeboard.entity.FreeBoard;
 import com.rest.study.board.freeboard.repository.FreeBoardRepository;
 import org.junit.jupiter.api.Test;
@@ -22,7 +22,7 @@ public class FreeBoardTests {
         q1.setFreeContent("너무 재밌어요,,,");
 
         User user = new User();
-        user.setUserId("member1");
+        user.setUserId("user1");
 
         q1.setUser(user);
         q1.setFreeCreatedAt(LocalDateTime.now());

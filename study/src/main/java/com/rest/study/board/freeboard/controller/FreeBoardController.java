@@ -1,7 +1,7 @@
 package com.rest.study.board.freeboard.controller;
 
-import com.rest.study.User.entity.User;
-import com.rest.study.User.service.UserService;
+import com.rest.study.user.entity.User;
+import com.rest.study.user.service.UserService;
 import com.rest.study.board.freeboard.dto.FreeBoardDto;
 import com.rest.study.board.freeboard.entity.FreeBoard;
 import com.rest.study.board.freeboard.service.FreeBoardService;

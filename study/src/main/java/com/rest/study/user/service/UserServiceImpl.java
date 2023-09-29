@@ -1,7 +1,7 @@
-package com.rest.study.User.service;
+package com.rest.study.user.service;
 
-import com.rest.study.User.entity.User;
-import com.rest.study.User.repository.UserRepository;
+import com.rest.study.user.entity.User;
+import com.rest.study.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

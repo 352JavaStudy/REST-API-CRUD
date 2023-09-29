@@ -1,6 +1,6 @@
-package com.rest.study.User.service;
+package com.rest.study.user.service;
 
-import com.rest.study.User.entity.User;
+import com.rest.study.user.entity.User;
 
 public interface UserService {
     User findByUserId(String freeUserId);

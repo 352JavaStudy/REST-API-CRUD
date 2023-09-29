@@ -1,13 +1,13 @@
 package com.rest.study.board.freeboard.dto;
 
-import com.rest.study.User.entity.User;
+import com.rest.study.user.entity.User;
 import com.rest.study.board.freeboard.entity.FreeBoard;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
-import java.time.LocalDateTime;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
