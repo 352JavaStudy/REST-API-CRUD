@@ -42,7 +42,7 @@
                 const tr = document.createElement('tr');
                 tr.innerHTML = `<td>${board.foodId}</td>
                 <td><a href="/foodboards/${board.foodId}">${board.foodTitle}</a></td>
-                <td>${board.foodMemberId}</td>
+                <td>${board.userId}</td>
                 <td>${board.foodCreatedAt}</td>`;
                 boardList.appendChild(tr);
             });

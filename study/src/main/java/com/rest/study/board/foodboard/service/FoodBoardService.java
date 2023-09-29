@@ -9,10 +9,10 @@ import javax.validation.Valid;
 import java.util.List;
 
 public interface FoodBoardService {
-    List<FoodBoard> findAll();
     FoodBoardReadDto findBoard(Long id);
     FoodBoard save(FoodBoard foodBoard);
     void deleteById(Long id);
 
     FoodBoardReadDto editBoard(Long id, FoodBoardDto foodBoardDto, User user);
+    List<FoodBoardReadDto> findBoards();
 }

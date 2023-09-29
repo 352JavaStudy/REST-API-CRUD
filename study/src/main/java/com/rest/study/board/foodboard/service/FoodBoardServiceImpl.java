@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,13 +23,22 @@ public class FoodBoardServiceImpl implements FoodBoardService{
     private FoodBoardRepository foodBoardRepository;
 
     @Override
-    public List<FoodBoard> findAll() {
-        return foodBoardRepository.findAllByOrderByFoodIdDesc();
+    public List<FoodBoardReadDto> findBoards() {
+        List<FoodBoard> boards = foodBoardRepository.findAllByOrderByFoodIdDesc();
+        List<FoodBoardReadDto> boardDtoList = new ArrayList<>();
+        boards.stream().forEach(i -> boardDtoList.add(FoodBoardReadDto.toDto(i)));
+        return boardDtoList;
     }
 
     @Override
     public FoodBoardReadDto findBoard(Long id) {
-        return FoodBoardReadDto.toDto(foodBoardRepository.findById(id).orElse(null));
+        Optional<FoodBoard> optionalFoodBoard = foodBoardRepository.findById(id);
+        if (optionalFoodBoard.isPresent()) {
+            FoodBoard foodBoard = optionalFoodBoard.get();
+            return FoodBoardReadDto.toDto(foodBoard);
+        } else {
+            throw new EntityNotFoundException("게시글이 존재하지 않습니다. : " + id);
+        }
     }
 
     @Override

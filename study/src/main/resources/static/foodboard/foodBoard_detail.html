@@ -37,7 +37,7 @@
 <div class="container my-3">
     <a class="navbar-brand" href="/" style="margin-bottom: 50px;">맛있는여행</a>
     <h1 id="title" class="display-4"></h1>
-    <p class="lead"><strong>작성자:</strong> <span id="memberId"></span></p>
+    <p class="lead"><strong>작성자:</strong> <span id="userId"></span></p>
     <p class="lead"><strong>작성일시:</strong> <span id="createdAt"></span></p>
     <hr>
     <div id="content" class="mb-5"></div>
@@ -54,7 +54,7 @@
         .then(response => response.json())
         .then(board => {
             document.querySelector("#title").innerHTML = `${board.foodTitle}`;
-            document.querySelector("#memberId").innerHTML = `${board.foodMemberId}`;
+            document.querySelector("#userId").innerHTML = `${board.userId}`;
             document.querySelector("#createdAt").innerHTML = `${board.foodCreatedAt}`;
             document.querySelector("#content").innerHTML = `${board.foodContent}`;
         });

@@ -32,20 +32,14 @@ public class FoodBoardApiController {
     private FoodBoardService foodBoardService;
 
     @GetMapping
-    public ResponseEntity<List<FoodBoard>> getBoards() {
-        // HttpEntity 클래스를 상속받아 구현한 ResponseEntity 응답 데이터(헤더/바디)를 포함한 클래스
-        List<FoodBoard> boardList = foodBoardService.findAll();
-        return ResponseEntity.ok(boardList);
+    public ResponseEntity<List<FoodBoardReadDto>> getBoards() {
+        return ResponseEntity.ok(foodBoardService.findBoards());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<FoodBoardReadDto> getBoard(@PathVariable Long id) {
-        FoodBoardReadDto foodBoard = foodBoardService.findBoard(id);
-        if(foodBoard == null)
-                return ResponseEntity.notFound().build();
-        return ResponseEntity.ok(foodBoard);
+        return ResponseEntity.ok(foodBoardService.findBoard(id));
     }
-
 
     @PostMapping
     public ResponseEntity<FoodBoard> writeBoard(@Valid @RequestBody FoodBoardDto foodBoardDto, BindingResult bindingResult) {
@@ -57,8 +51,7 @@ public class FoodBoardApiController {
     @PatchMapping("/{id}")
     public ResponseEntity<FoodBoardReadDto> editBoard(@PathVariable Long id, @Valid @RequestBody FoodBoardDto foodBoardDto) {
         User user = userService.findByUserId(foodBoardDto.getFoodUserId());
-        FoodBoardReadDto foodBoard = foodBoardService.editBoard(id, foodBoardDto, user);
-        return ResponseEntity.ok(foodBoard);
+        return ResponseEntity.ok(foodBoardService.editBoard(id, foodBoardDto, user));
     }
 
     @DeleteMapping("/{id}")

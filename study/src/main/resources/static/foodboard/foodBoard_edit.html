@@ -28,8 +28,8 @@
             <input type="text" class="form-control" id="foodId" required>
         </div>
         <div class="mb-3">
-            <label for="foodMemberId">아이디:</label>
-            <input type="text" class="form-control" id="foodMemberId" required>
+            <label for="foodUserId">아이디:</label>
+            <input type="text" class="form-control" id="foodUserId" required>
         </div>
         <div class="mb-3">
             <label for="foodTitle">제목:</label>
@@ -58,7 +58,7 @@
         .then(board => {
             document.querySelector("#foodId").value = `${board.foodId}`;
             document.querySelector("#foodTitle").value = `${board.foodTitle}`;
-            document.querySelector("#foodMemberId").value = `${board.foodMemberId}`;
+            document.querySelector("#foodUserId").value = `${board.userId}`;
             document.querySelector("#foodContent").value = `${board.foodContent}`;
         })
         .catch(error => {
@@ -71,7 +71,7 @@
             foodTitle: document.querySelector("#foodTitle").value,
             foodContent: document.querySelector("#foodContent").value,
             foodCreatedAt: new Date().toISOString(),
-            foodMemberId: document.querySelector("#foodMemberId").value
+            foodUserId: document.querySelector("#foodUserId").value
         };
 
         fetch(`/api/foodboards/${id}`, {
