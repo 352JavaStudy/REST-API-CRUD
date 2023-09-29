@@ -21,10 +21,10 @@ public class Image {
     private Long imageId;
 
     @Column(nullable = false)
-    private String imageOriginalFilename;
+    private String originName;
 
     @Column(nullable = false)
-    private String imageRenamedFilename;
+    private String uniqueName;
 
     @Column(nullable = false)
     private Long imageFileSize;
