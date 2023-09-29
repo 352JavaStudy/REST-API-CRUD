@@ -1,5 +1,6 @@
 package com.rest.study.board.freeboard.dto;
 
+import com.rest.study.User.entity.User;
 import com.rest.study.board.freeboard.entity.FreeBoard;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,22 +13,22 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class FreeBoardDto {
 
-    private String freeMemberId;
+    private String freeUserId;
     @NotBlank(message = "제목은 필수입니다.")
     private String freeTitle;
     @NotBlank(message = "내용은 필수입니다.")
     private String freeContent;
 
-    public FreeBoard toFreeBoardDto(FreeBoard freeBoard) {
+    public FreeBoard toFreeBoardDto(FreeBoard freeBoard, User user) {
                 freeBoard.setFreeTitle(freeTitle);
                 freeBoard.setFreeContent(freeContent);
-                freeBoard.setFreeMemberId(freeMemberId);
+                freeBoard.setUser(user);
                 return freeBoard;
     }
 
-    public FreeBoard toFreeBoardDto() {
+    public FreeBoard toFreeBoardDto(User user) {
         return FreeBoard.builder()
-                .freeMemberId(freeMemberId)
+                .user(user)
                 .freeTitle(freeTitle)
                 .freeContent(freeContent)
                 .build();

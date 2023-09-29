@@ -1,4 +1,4 @@
-package com.rest.study.member.entity;
+package com.rest.study.User.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.context.annotation.Bean;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -15,9 +16,9 @@ import java.sql.Date;
 @AllArgsConstructor
 @Builder
 @Entity
-public class Member {
+public class User {
     @Id
-    private String memberId;
+    private String userId;
 
     @Column(nullable = false)
     private String name;

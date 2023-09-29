@@ -1,11 +1,14 @@
 package com.rest.study.board.freeboard.entity;
 
-import com.rest.study.member.entity.Member;
+import com.rest.study.User.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+import org.springframework.context.annotation.DependsOn;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -28,8 +31,10 @@ public class FreeBoard {
     @Column(nullable = false)
     private String freeContent;
 
-    @Column(nullable = false)
-    private String freeMemberId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "FREE_USER_ID", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private User user;
 
     @CreationTimestamp
     private LocalDateTime freeCreatedAt;

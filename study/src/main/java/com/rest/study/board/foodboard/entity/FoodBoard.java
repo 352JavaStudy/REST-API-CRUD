@@ -1,11 +1,9 @@
 package com.rest.study.board.foodboard.entity;
 
-import com.rest.study.member.entity.Member;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
-import java.sql.Date;
 import java.sql.Timestamp;
 
 
