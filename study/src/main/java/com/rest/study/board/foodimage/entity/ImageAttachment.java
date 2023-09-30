@@ -1,10 +1,7 @@
 package com.rest.study.board.foodimage.entity;
 
 import com.rest.study.board.foodboard.entity.FoodBoard;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -14,6 +11,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Builder
 @Entity
+@ToString(exclude = "foodBoard")
 public class ImageAttachment {
 
     @Id
@@ -29,7 +27,7 @@ public class ImageAttachment {
     @Column(nullable = false)
     private Long imageFileSize;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="FOOD_ID")
     private FoodBoard foodBoard;
 

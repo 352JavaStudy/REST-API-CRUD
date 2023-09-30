@@ -37,7 +37,7 @@ public class FoodBoard {
     @Column(nullable = false, length = 4000)
     private String foodContent;
 
-    @OneToMany(mappedBy = "foodBoard", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @OneToMany(mappedBy = "foodBoard", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private List<ImageAttachment> images;
 
 // TemporalType.TIMESTAMP : date + time 의 timestamp(datetime) 타입
