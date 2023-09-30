@@ -1,10 +1,8 @@
-package com.rest.study.board.foodimage.service;
+package com.rest.study.image.foodimage.service;
 
 import com.rest.study.board.foodboard.entity.FoodBoard;
-import com.rest.study.board.foodimage.entity.ImageAttachment;
+import com.rest.study.image.foodimage.entity.ImageAttachment;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.util.List;
 
 public interface ImageService {
 

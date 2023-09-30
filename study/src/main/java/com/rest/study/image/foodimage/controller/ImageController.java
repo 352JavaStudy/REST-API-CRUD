@@ -1,7 +1,7 @@
-package com.rest.study.board.foodimage.controller;
+package com.rest.study.image.foodimage.controller;
 
-import com.rest.study.board.foodimage.entity.ImageAttachment;
-import com.rest.study.board.foodimage.service.ImageService;
+import com.rest.study.image.foodimage.entity.ImageAttachment;
+import com.rest.study.image.foodimage.service.ImageService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

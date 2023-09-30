@@ -1,4 +1,4 @@
-package com.rest.study.board.foodimage.entity;
+package com.rest.study.image.foodimage.entity;
 
 import com.rest.study.board.foodboard.entity.FoodBoard;
 import lombok.*;

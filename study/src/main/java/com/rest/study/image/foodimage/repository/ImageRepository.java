@@ -1,6 +1,6 @@
-package com.rest.study.board.foodimage.repository;
+package com.rest.study.image.foodimage.repository;
 
-import com.rest.study.board.foodimage.entity.ImageAttachment;
+import com.rest.study.image.foodimage.entity.ImageAttachment;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

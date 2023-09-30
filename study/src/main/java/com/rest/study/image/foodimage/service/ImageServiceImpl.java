@@ -1,8 +1,8 @@
-package com.rest.study.board.foodimage.service;
+package com.rest.study.image.foodimage.service;
 
 import com.rest.study.board.foodboard.entity.FoodBoard;
-import com.rest.study.board.foodimage.entity.ImageAttachment;
-import com.rest.study.board.foodimage.repository.ImageRepository;
+import com.rest.study.image.foodimage.entity.ImageAttachment;
+import com.rest.study.image.foodimage.repository.ImageRepository;
 import com.rest.study.common.controller.StringUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.util.List;
 
 @Slf4j
 @Service

@@ -1,15 +1,12 @@
 package com.rest.study.board.foodboard.dto;
 
 import com.rest.study.board.foodboard.entity.FoodBoard;
-import com.rest.study.board.foodimage.dto.ImageDto;
-import com.rest.study.board.foodimage.entity.ImageAttachment;
+import com.rest.study.image.foodimage.dto.ImageDto;
 import com.rest.study.user.entity.User;
 import lombok.Builder;
 import lombok.Data;
 
 import java.sql.Timestamp;
-import java.util.Collections;
-import java.util.List;
 
 @Data
 @Builder

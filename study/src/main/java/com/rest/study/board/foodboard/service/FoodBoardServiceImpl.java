@@ -4,10 +4,10 @@ import com.rest.study.board.foodboard.dto.FoodBoardCreateDto;
 import com.rest.study.board.foodboard.dto.FoodBoardReadDto;
 import com.rest.study.board.foodboard.entity.FoodBoard;
 import com.rest.study.board.foodboard.repository.FoodBoardRepository;
-import com.rest.study.board.foodimage.dto.ImageDto;
-import com.rest.study.board.foodimage.entity.ImageAttachment;
-import com.rest.study.board.foodimage.repository.ImageRepository;
-import com.rest.study.board.foodimage.service.ImageService;
+import com.rest.study.image.foodimage.dto.ImageDto;
+import com.rest.study.image.foodimage.entity.ImageAttachment;
+import com.rest.study.image.foodimage.repository.ImageRepository;
+import com.rest.study.image.foodimage.service.ImageService;
 import com.rest.study.user.entity.User;
 import com.rest.study.user.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -53,13 +53,15 @@ public class FoodBoardServiceImpl implements FoodBoardService{
         if (optionalFoodBoard.isPresent()) {
             FoodBoard foodBoard = optionalFoodBoard.get();
             List<ImageAttachment> images = imageRepository.findByFoodBoard_foodId(id);
-            ImageDto i = ImageDto.builder()
-                    .originName(images.get(0).getOriginName())
-                    .uniqueName(images.get(0).getUniqueName())
-                    .build();
             foodBoardRepository.save(foodBoard);
             FoodBoardReadDto f = FoodBoardReadDto.toDto(foodBoard);
-            f.setImages(i);
+            if(images != null && images.size() > 0) {
+                ImageDto i = ImageDto.builder()
+                        .originName(images.get(0).getOriginName())
+                        .uniqueName(images.get(0).getUniqueName())
+                        .build();
+                f.setImages(i);
+            }
             return f;
         } else {
             throw new EntityNotFoundException("게시글이 존재하지 않습니다. : " + id);

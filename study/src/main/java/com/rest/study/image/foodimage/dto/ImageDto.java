@@ -1,4 +1,4 @@
-package com.rest.study.board.foodimage.dto;
+package com.rest.study.image.foodimage.dto;
 
 import lombok.Builder;
 import lombok.Data;

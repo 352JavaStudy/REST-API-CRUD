@@ -1,4 +1,4 @@
-package com.rest.study.board.foodimage.entity;
+package com.rest.study.image.foodimage.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
