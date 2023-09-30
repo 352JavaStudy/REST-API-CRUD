@@ -1,8 +1,7 @@
-package com.rest.study.board.image.service;
+package com.rest.study.board.foodimage.service;
 
-import com.rest.study.board.foodboard.dto.FoodBoardCreateDto;
 import com.rest.study.board.foodboard.entity.FoodBoard;
-import com.rest.study.board.image.entity.ImageAttachment;
+import com.rest.study.board.foodimage.entity.ImageAttachment;
 import org.springframework.web.multipart.MultipartFile;
 
 public interface ImageService {

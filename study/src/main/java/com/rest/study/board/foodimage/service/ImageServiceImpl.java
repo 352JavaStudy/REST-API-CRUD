@@ -1,9 +1,8 @@
-package com.rest.study.board.image.service;
+package com.rest.study.board.foodimage.service;
 
-import com.rest.study.board.foodboard.dto.FoodBoardCreateDto;
 import com.rest.study.board.foodboard.entity.FoodBoard;
-import com.rest.study.board.image.entity.ImageAttachment;
-import com.rest.study.board.image.repository.ImageRepository;
+import com.rest.study.board.foodimage.entity.ImageAttachment;
+import com.rest.study.board.foodimage.repository.ImageRepository;
 import com.rest.study.common.controller.StringUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.PostConstruct;
-import javax.servlet.ServletContext;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;

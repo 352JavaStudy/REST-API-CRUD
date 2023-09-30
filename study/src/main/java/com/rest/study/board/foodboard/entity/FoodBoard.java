@@ -1,6 +1,6 @@
 package com.rest.study.board.foodboard.entity;
 
-import com.rest.study.board.image.entity.ImageAttachment;
+import com.rest.study.board.foodimage.entity.ImageAttachment;
 import com.rest.study.user.entity.User;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
