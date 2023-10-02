@@ -1,4 +1,4 @@
-package com.rest.study.board.image.entity;
+package com.rest.study.board.image.freeImage.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

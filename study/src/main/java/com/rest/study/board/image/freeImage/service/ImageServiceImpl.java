@@ -1,8 +1,8 @@
-package com.rest.study.board.image.service;
+package com.rest.study.board.image.freeImage.service;
 
 import com.rest.study.board.freeboard.entity.FreeBoard;
-import com.rest.study.board.image.entity.Image;
-import com.rest.study.board.image.repository.ImageRepository;
+import com.rest.study.board.image.freeImage.entity.Image;
+import com.rest.study.board.image.freeImage.repository.ImageRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,15 +12,12 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.PostConstruct;
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.sql.Timestamp;
 import java.util.UUID;
 
 @Service

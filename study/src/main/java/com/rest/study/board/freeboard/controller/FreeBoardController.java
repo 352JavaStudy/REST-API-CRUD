@@ -2,7 +2,6 @@ package com.rest.study.board.freeboard.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rest.study.board.freeboard.dto.FreeBoardReadDto;
-import com.rest.study.board.image.entity.Image;
 import com.rest.study.user.entity.User;
 import com.rest.study.user.service.UserService;
 import com.rest.study.board.freeboard.dto.FreeBoardDto;

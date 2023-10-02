@@ -1,4 +1,4 @@
-package com.rest.study.board.image.entity;
+package com.rest.study.board.image.freeImage.entity;
 
 import com.rest.study.board.freeboard.entity.FreeBoard;
 import lombok.AllArgsConstructor;
@@ -7,7 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
 
 @SequenceGenerator(name = "SEQ_IMAGE_ID", sequenceName = "SEQ_IMAGE_ID", initialValue = 1, allocationSize = 1)
 @Data

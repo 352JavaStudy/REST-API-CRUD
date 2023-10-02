@@ -1,6 +1,6 @@
 package com.rest.study.board.freeboard.dto;
 
-import com.rest.study.board.image.entity.Image;
+import com.rest.study.board.image.freeImage.entity.Image;
 import com.rest.study.user.entity.User;
 import com.rest.study.board.freeboard.entity.FreeBoard;
 import lombok.AllArgsConstructor;
