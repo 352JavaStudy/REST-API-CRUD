@@ -12,7 +12,8 @@ import javax.persistence.*;
 @Builder
 @Entity
 @ToString(exclude = "foodBoard")
-public class ImageAttachment {
+@Table(name = "image_attachment")
+public class FoodImageAttachment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_IMAGE_ID")

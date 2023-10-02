@@ -1,7 +1,7 @@
 package com.rest.study.image.freeImage.controller;
 
 import com.rest.study.board.freeboard.entity.FreeBoard;
-import com.rest.study.image.freeImage.service.ImageService;
+import com.rest.study.image.freeImage.service.FreeImageService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,12 +16,12 @@ import java.io.IOException;
 @RestController
 @Slf4j
 @RequestMapping("/image")
-public class ImageController {
+public class FreeImageController {
 
     @Autowired
-    private ImageService imageService;
+    private FreeImageService imageService;
 
-    public ImageController(ImageService imageService) {
+    public FreeImageController(FreeImageService imageService) {
         this.imageService = imageService;
     }
 

@@ -53,7 +53,7 @@
     </div>
   </nav>
   <h1>글 작성</h1>
-  <form id="createBoardForm">
+  <form id="createBoardForm" enctype="multipart/form-data">
     <div class="mb-3">
       <label for="freeTitle" class="form-label">제목:</label>
       <input type="text" class="form-control" id="freeTitle" name="freeTitle" required>
@@ -62,26 +62,34 @@
       <label for="freeContent" class="form-label">내용:</label>
       <textarea class="form-control" id="freeContent" name="freeContent" required ></textarea>
     </div>
+    <div class="mb-3">
+      <label for="images" class="form-label">사진 첨부:</label>
+      <input type="file" class="form-control" id="images" name="images">
+    </div>
     <button type="submit" class="btn btn-primary" style="background-color: #58acfa; border: none;">작성하기</button>
     <a href="/freeboards" class="btn btn-secondary" style="background-color: #c8c8c8; border: none;">돌아가기</a>
   </form>
 </div>
 <script>
-  document.getElementById('createBoardForm').addEventListener('submit', function(event) {
+  document.getElementById('createBoardForm').addEventListener('submit', function (event) {
     event.preventDefault();
 
-    const title = document.getElementById('freeTitle').value;
-    const content = document.getElementById('freeContent').value;
-    fetch('http://localhost:8080/api/freeboards/write', {
+    const formData = new FormData();
+    formData.append('freeBoardDto', JSON.stringify({
+      freeTitle: document.getElementById('freeTitle').value,
+      freeContent: document.getElementById('freeContent').value,
+      freeUserId: 'user1'
+    }));
+
+    // 이미지 파일이 선택되었을 때만 FormData에 추가
+    const imageInput = document.getElementById('images');
+    if (imageInput.files.length > 0) {
+      formData.append('images', imageInput.files[0]);
+    }
+
+      fetch('http://localhost:8080/api/freeboards/write', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        freeTitle: title,
-        freeContent: content,
-        freeUserId: 'user1'
-      })
+        body: formData
     })
             .then(response => response.json())
             .then(data => {

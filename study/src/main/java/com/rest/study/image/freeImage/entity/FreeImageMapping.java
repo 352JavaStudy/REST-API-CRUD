@@ -1,5 +1,4 @@
-
-package com.rest.study.image.foodimage.entity;
+package com.rest.study.image.freeImage.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,7 +13,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Builder
 @Entity
-public class ImageMapping {
+public class FreeImageMapping {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_MAPPING_ID")

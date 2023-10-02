@@ -1,8 +1,8 @@
 package com.rest.study.image.freeImage.service;
 
 import com.rest.study.board.freeboard.entity.FreeBoard;
-import com.rest.study.board.image.freeImage.entity.Image;
-import com.rest.study.image.freeImage.repository.ImageRepository;
+import com.rest.study.image.freeImage.entity.FreeImageAttachment;
+import com.rest.study.image.freeImage.repository.FreeImageRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,10 +23,10 @@ import java.util.UUID;
 @Service
 @Transactional(rollbackFor = Exception.class)
 @Slf4j
-public class ImageServiceImpl implements ImageService {
+public class FreeImageServiceImpl implements FreeImageService {
 
     @Autowired
-    private ImageRepository imageRepository;
+    private FreeImageRepository imageRepository;
 
     @Value("${image.upload.directory}")
     private String imageUploadDirectory; // 이미지 파일 저장 경로
@@ -45,7 +45,7 @@ public class ImageServiceImpl implements ImageService {
         }
     }
 
-    public Image uploadFile(MultipartFile file, FreeBoard freeBoard) throws IOException {
+    public FreeImageAttachment uploadFile(MultipartFile file, FreeBoard freeBoard) throws IOException {
         // 파일 유형 검증
         String contentType = file.getContentType();
         if (contentType == null || !contentType.startsWith("image")) {
@@ -62,7 +62,7 @@ public class ImageServiceImpl implements ImageService {
             Files.copy(inputStream, targetLocation, StandardCopyOption.REPLACE_EXISTING);
         }
 
-        Image image = new Image();
+        FreeImageAttachment image = new FreeImageAttachment();
         image.setOriginName(uploadFileName);
         image.setUniqueName(realName);
         image.setImageFileSize(file.getSize());

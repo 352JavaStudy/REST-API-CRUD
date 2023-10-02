@@ -5,9 +5,9 @@ import com.rest.study.board.foodboard.dto.FoodBoardReadDto;
 import com.rest.study.board.foodboard.entity.FoodBoard;
 import com.rest.study.board.foodboard.repository.FoodBoardRepository;
 import com.rest.study.image.foodimage.dto.ImageDto;
-import com.rest.study.image.foodimage.entity.ImageAttachment;
-import com.rest.study.image.foodimage.repository.ImageRepository;
-import com.rest.study.image.foodimage.service.ImageService;
+import com.rest.study.image.foodimage.entity.FoodImageAttachment;
+import com.rest.study.image.foodimage.repository.FoodImageRepository;
+import com.rest.study.image.foodimage.service.FoodImageService;
 import com.rest.study.user.entity.User;
 import com.rest.study.user.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -31,10 +31,10 @@ public class FoodBoardServiceImpl implements FoodBoardService{
     private FoodBoardRepository foodBoardRepository;
 
     @Autowired
-    private ImageRepository imageRepository;
+    private FoodImageRepository imageRepository;
 
     @Autowired
-    private ImageService imageService;
+    private FoodImageService imageService;
 
     @Autowired
     private UserService userService;
@@ -52,7 +52,7 @@ public class FoodBoardServiceImpl implements FoodBoardService{
         Optional<FoodBoard> optionalFoodBoard = foodBoardRepository.findById(id);
         if (optionalFoodBoard.isPresent()) {
             FoodBoard foodBoard = optionalFoodBoard.get();
-            List<ImageAttachment> images = imageRepository.findByFoodBoard_foodId(id);
+            List<FoodImageAttachment> images = imageRepository.findByFoodBoard_foodId(id);
             foodBoardRepository.save(foodBoard);
             FoodBoardReadDto f = FoodBoardReadDto.toDto(foodBoard);
             if(images != null && images.size() > 0) {

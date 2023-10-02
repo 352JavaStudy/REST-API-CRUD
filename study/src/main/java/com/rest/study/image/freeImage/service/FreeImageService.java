@@ -5,7 +5,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 
-public interface ImageService {
+public interface FreeImageService {
 
     Object uploadFile(MultipartFile file, FreeBoard freeBoard) throws IOException;
 }
