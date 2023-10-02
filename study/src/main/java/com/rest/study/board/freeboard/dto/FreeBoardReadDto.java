@@ -1,14 +1,9 @@
 package com.rest.study.board.freeboard.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.rest.study.board.foodboard.dto.FoodBoardReadDto;
-import com.rest.study.board.foodboard.entity.FoodBoard;
 import com.rest.study.board.freeboard.entity.FreeBoard;
 import com.rest.study.user.entity.User;
 import lombok.Builder;
 import lombok.Data;
-import org.hibernate.Hibernate;
-import org.hibernate.proxy.HibernateProxy;
 
 import java.sql.Timestamp;
 

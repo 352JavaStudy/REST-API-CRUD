@@ -1,5 +1,8 @@
-
+<<<<<<<< HEAD:study/src/main/java/com/rest/study/image/foodimage/entity/ImageMapping.java
 package com.rest.study.image.foodimage.entity;
+========
+package com.rest.study.board.image.freeImage.entity;
+>>>>>>>> yera2:study/src/main/java/com/rest/study/board/image/freeImage/entity/ImageMapping.java
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
