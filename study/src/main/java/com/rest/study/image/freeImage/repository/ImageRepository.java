@@ -1,4 +1,4 @@
-package com.rest.study.board.image.freeImage.repository;
+package com.rest.study.image.freeImage.repository;
 
 import com.rest.study.board.image.freeImage.entity.Image;
 import org.springframework.data.jpa.repository.JpaRepository;

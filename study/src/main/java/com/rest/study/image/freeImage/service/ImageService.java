@@ -1,4 +1,4 @@
-package com.rest.study.board.image.freeImage.service;
+package com.rest.study.image.freeImage.service;
 
 import com.rest.study.board.freeboard.entity.FreeBoard;
 import org.springframework.web.multipart.MultipartFile;

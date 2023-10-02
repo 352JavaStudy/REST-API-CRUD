@@ -1,3 +1,5 @@
+package com.rest.study.image.freeImage.entity;
+
 <<<<<<<< HEAD:study/src/main/java/com/rest/study/image/foodimage/entity/ImageAttachment.java
 package com.rest.study.image.foodimage.entity;
 ========

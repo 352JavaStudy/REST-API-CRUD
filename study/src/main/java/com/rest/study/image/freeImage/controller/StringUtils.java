@@ -1,4 +1,4 @@
-package com.rest.study.board.image.freeImage.controller;
+package com.rest.study.image.freeImage.controller;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;

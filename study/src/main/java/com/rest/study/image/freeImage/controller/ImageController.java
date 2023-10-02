@@ -1,7 +1,7 @@
-package com.rest.study.board.image.freeImage.controller;
+package com.rest.study.image.freeImage.controller;
 
 import com.rest.study.board.freeboard.entity.FreeBoard;
-import com.rest.study.board.image.freeImage.service.ImageService;
+import com.rest.study.image.freeImage.service.ImageService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
