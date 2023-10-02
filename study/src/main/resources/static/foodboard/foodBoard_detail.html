@@ -64,8 +64,7 @@
                 imagesElement.innerHTML = `
             <div>
                 <p>${images.originName}</p>
-                <img src="/uploads/${images.uniqueName}" />
-                <img src="/images/163684b4-f72d-470d-ae92-b5cdedd356c5.png" />
+                <img src="/images/${images.uniqueName}" />
             </div>`;
             } else if (images && images.length > 0) {
                 const imageNames = images.map(image => image.originName).join(', ');
@@ -73,7 +72,7 @@
             <div>
                 <p>${imageNames}</p>
                 ${images.map(image => `
-                    <img src="/uploads/${image.uniqueName}" />
+                    <img src="/images/${image.uniqueName}" />
                 `).join('')}
             </div>`;
             } else {

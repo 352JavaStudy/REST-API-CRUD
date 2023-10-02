@@ -17,6 +17,5 @@ public class ImageController {
 
     @Autowired
     private ImageService imageService;
-    List<ImageAttachment> images = new ArrayList<>();
 
 }

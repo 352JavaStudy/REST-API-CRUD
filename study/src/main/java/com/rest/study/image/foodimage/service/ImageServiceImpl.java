@@ -59,6 +59,26 @@ public class ImageServiceImpl implements ImageService {
                 .foodBoard(foodBoard)
                 .imageFileSize(images.getSize())
                 .build();
-        return  imageRepository.save(image);
+        return  imageRepository.saveAndFlush(image);
+    }
+
+    @Override
+    public void updateFile(MultipartFile images, FoodBoard foodBoard) {
+        String uniqueName = StringUtils.generateUniqueName(images.getOriginalFilename());
+        ImageAttachment existingImage = imageRepository.findByUniqueName(uniqueName);
+        if (existingImage != null) {
+            try (InputStream inputStream = images.getInputStream()) {
+                Path targetLocation = fileDir.resolve(uniqueName);
+                Files.copy(inputStream, targetLocation, StandardCopyOption.REPLACE_EXISTING);
+                existingImage.setOriginName(images.getOriginalFilename());
+                existingImage.setImageFileSize(images.getSize());
+                existingImage.setFoodBoard(foodBoard);
+                imageRepository.saveAndFlush(existingImage);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            uploadFile(images, foodBoard);
+        }
     }
 }

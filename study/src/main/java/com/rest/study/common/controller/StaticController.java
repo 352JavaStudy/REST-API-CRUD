@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class StaticController {
-
     @RequestMapping(value="/foodboards", method= RequestMethod.GET)
     public String getFoodBoards() { return "forward:/foodboard/foodBoard_list.html"; }
 

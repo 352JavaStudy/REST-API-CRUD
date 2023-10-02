@@ -5,6 +5,7 @@ import com.rest.study.board.foodboard.dto.FoodBoardCreateDto;
 import com.rest.study.board.foodboard.dto.FoodBoardReadDto;
 import com.rest.study.board.foodboard.entity.FoodBoard;
 import com.rest.study.board.foodboard.service.FoodBoardService;
+import com.rest.study.common.controller.StringUtils;
 import com.rest.study.user.entity.User;
 import com.rest.study.user.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.sql.Timestamp;
 import java.util.List;
 
 
@@ -43,6 +45,7 @@ public class FoodBoardApiController {
 
     @GetMapping("/{id}")
     public ResponseEntity<FoodBoardReadDto> getBoard(@PathVariable Long id) {
+        System.out.println(foodBoardService.findBoard(id));
         return ResponseEntity.ok(foodBoardService.findBoard(id));
     }
 
@@ -52,8 +55,8 @@ public class FoodBoardApiController {
         return ResponseEntity.ok(foodBoardService.writeBoard(foodBoardCreateDto));
     }
 
-    @PatchMapping("/{id}")
-    public ResponseEntity<FoodBoardReadDto> editBoard(@PathVariable Long id, @Valid @RequestBody FoodBoardCreateDto foodBoardDto) {
+    @PatchMapping(value = "/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<FoodBoardReadDto> editBoard(@PathVariable Long id, @Valid @ModelAttribute FoodBoardCreateDto foodBoardDto) throws IllegalAccessException {
         User user = userService.findByUserId(foodBoardDto.getFoodUserId());
         return ResponseEntity.ok(foodBoardService.editBoard(id, foodBoardDto, user));
     }

@@ -91,16 +91,13 @@ public class FoodBoardServiceImpl implements FoodBoardService{
     }
 
     @Override
-    public FoodBoardReadDto editBoard(Long id, FoodBoardCreateDto foodBoardDto, User user) {
-        Optional<FoodBoard> optionalFoodBoard = foodBoardRepository.findById(id);
-        if (optionalFoodBoard.isPresent()) {
-            FoodBoard foodBoard = optionalFoodBoard.get();
-            foodBoardDto.toFoodBoard(foodBoard, user);
-            foodBoardRepository.save(foodBoard);
-            // 수정된 게시물을 바로 반환
-            return FoodBoardReadDto.toDto(foodBoard);
-        } else {
-            throw new EntityNotFoundException("게시글이 존재하지 않습니다. : " + id);
+    public FoodBoardReadDto editBoard(Long id, FoodBoardCreateDto foodBoardCreateDto, User user) {
+        FoodBoard foodBoard = foodBoardRepository.getReferenceById(id);
+        foodBoardCreateDto.toFoodBoard(foodBoard, user);
+        foodBoardRepository.save(foodBoard);
+        if(foodBoardCreateDto.getImages() != null) {
+            imageService.updateFile(foodBoardCreateDto.getImages(), foodBoard);
         }
+        return FoodBoardReadDto.toDto(foodBoardRepository.saveAndFlush(foodBoard));
     }
 }

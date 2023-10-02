@@ -7,4 +7,6 @@ import org.springframework.web.multipart.MultipartFile;
 public interface ImageService {
 
     ImageAttachment uploadFile(MultipartFile file, FoodBoard foodBoard);
+
+    void updateFile(MultipartFile images, FoodBoard foodBoard);
 }
