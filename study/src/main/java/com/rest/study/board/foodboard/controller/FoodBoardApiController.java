@@ -45,7 +45,6 @@ public class FoodBoardApiController {
 
     @GetMapping("/{id}")
     public ResponseEntity<FoodBoardReadDto> getBoard(@PathVariable Long id) {
-        System.out.println(foodBoardService.findBoard(id));
         return ResponseEntity.ok(foodBoardService.findBoard(id));
     }
 

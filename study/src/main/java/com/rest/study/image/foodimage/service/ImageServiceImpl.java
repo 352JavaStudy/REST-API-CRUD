@@ -32,8 +32,6 @@ public class ImageServiceImpl implements ImageService {
 
     private Path fileDir;
 
-    private final String TYPE_CSV = "text/csv";
-
     @PostConstruct
     public void postConstruct() {
         fileDir = Paths.get(imageUploadDir).toAbsolutePath().normalize();
