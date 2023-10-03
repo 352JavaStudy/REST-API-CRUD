@@ -1,5 +1,7 @@
 package com.rest.study.board.freeboard.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.rest.study.image.freeImage.entity.FreeImageAttachment;
 import com.rest.study.user.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,7 +13,7 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
+import java.util.List;
 
 @SequenceGenerator(name = "SEQ_FREE_BOARD_ID", sequenceName = "SEQ_FREE_BOARD_ID", initialValue = 1, allocationSize = 1)
 @Data
@@ -39,4 +41,7 @@ public class FreeBoard {
     @CreationTimestamp
     private Timestamp freeCreatedAt;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "freeBoard", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    private List<FreeImageAttachment> images;
 }

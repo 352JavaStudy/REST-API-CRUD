@@ -1,8 +1,8 @@
 package com.rest.study.image.foodimage.service;
 
 import com.rest.study.board.foodboard.entity.FoodBoard;
-import com.rest.study.image.foodimage.entity.ImageAttachment;
-import com.rest.study.image.foodimage.repository.ImageRepository;
+import com.rest.study.image.foodimage.entity.FoodImageAttachment;
+import com.rest.study.image.foodimage.repository.FoodImageRepository;
 import com.rest.study.common.controller.StringUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +22,10 @@ import java.nio.file.StandardCopyOption;
 @Slf4j
 @Service
 @Transactional(rollbackFor = Exception.class)
-public class ImageServiceImpl implements ImageService {
+public class FoodImageServiceImpl implements FoodImageService {
 
     @Autowired
-    private ImageRepository imageRepository;
+    private FoodImageRepository imageRepository;
 
     @Value("${image.upload.directory}")
     private String imageUploadDir;
@@ -43,7 +43,7 @@ public class ImageServiceImpl implements ImageService {
     }
 
     @Override
-    public ImageAttachment uploadFile(MultipartFile images, FoodBoard foodBoard) {
+    public FoodImageAttachment uploadFile(MultipartFile images, FoodBoard foodBoard) {
         String uniqueName = StringUtils.generateUniqueName(images.getOriginalFilename());
         Path targetLocation = fileDir.resolve(uniqueName);
         try(InputStream inputStream = images.getInputStream()) {
@@ -51,7 +51,7 @@ public class ImageServiceImpl implements ImageService {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        ImageAttachment image = ImageAttachment.builder()
+        FoodImageAttachment image = FoodImageAttachment.builder()
                 .originName(images.getOriginalFilename())
                 .uniqueName(uniqueName)
                 .foodBoard(foodBoard)
@@ -63,7 +63,7 @@ public class ImageServiceImpl implements ImageService {
     @Override
     public void updateFile(MultipartFile images, FoodBoard foodBoard) {
         String uniqueName = StringUtils.generateUniqueName(images.getOriginalFilename());
-        ImageAttachment existingImage = imageRepository.findByUniqueName(uniqueName);
+        FoodImageAttachment existingImage = imageRepository.findByUniqueName(uniqueName);
         if (existingImage != null) {
             try (InputStream inputStream = images.getInputStream()) {
                 Path targetLocation = fileDir.resolve(uniqueName);

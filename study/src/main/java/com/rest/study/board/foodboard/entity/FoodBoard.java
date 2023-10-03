@@ -1,6 +1,6 @@
 package com.rest.study.board.foodboard.entity;
 
-import com.rest.study.image.foodimage.entity.ImageAttachment;
+import com.rest.study.image.foodimage.entity.FoodImageAttachment;
 import com.rest.study.user.entity.User;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -38,7 +38,7 @@ public class FoodBoard {
     private String foodContent;
 
     @OneToMany(mappedBy = "foodBoard", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
-    private List<ImageAttachment> images;
+    private List<FoodImageAttachment> images;
 
 // TemporalType.TIMESTAMP : date + time 의 timestamp(datetime) 타입
 // @Column(nullable = false, columnDefinition = "date default systimestamp")

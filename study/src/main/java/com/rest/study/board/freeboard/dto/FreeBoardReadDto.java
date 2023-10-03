@@ -1,16 +1,13 @@
 package com.rest.study.board.freeboard.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.rest.study.board.foodboard.dto.FoodBoardReadDto;
-import com.rest.study.board.foodboard.entity.FoodBoard;
 import com.rest.study.board.freeboard.entity.FreeBoard;
+import com.rest.study.image.freeImage.entity.FreeImageAttachment;
 import com.rest.study.user.entity.User;
 import lombok.Builder;
 import lombok.Data;
-import org.hibernate.Hibernate;
-import org.hibernate.proxy.HibernateProxy;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 @Data
 @Builder
@@ -21,6 +18,8 @@ public class FreeBoardReadDto {
     private String freeContent;
     private Timestamp freeCreatedAt;
 
+    private List<FreeImageAttachment> images;
+
     public static FreeBoardReadDto toDto(FreeBoard freeBoard) {
         return FreeBoardReadDto.builder()
                 .freeId(freeBoard.getFreeId())
@@ -28,6 +27,7 @@ public class FreeBoardReadDto {
                 .freeTitle(freeBoard.getFreeTitle())
                 .freeCreatedAt(freeBoard.getFreeCreatedAt())
                 .userId(freeBoard.getUser().getUserId())
+                .images(freeBoard.getImages())
                 .build();
     }
 
