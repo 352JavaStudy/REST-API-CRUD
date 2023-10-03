@@ -7,8 +7,6 @@ import java.util.List;
 
 public interface FoodImageRepository extends JpaRepository<FoodImageAttachment, Long> {
 
-
-
     List<FoodImageAttachment> findByFoodBoard_foodId(Long id);
 
     FoodImageAttachment findByUniqueName(String uniqueName);
